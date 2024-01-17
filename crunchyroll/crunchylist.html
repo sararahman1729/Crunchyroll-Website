@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Watchlist Profile</title>
+  <link rel="stylesheet" type="text/css" href="crstyle.css">
+  <script>
+    // JavaScript code
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get the section elements
+      var crunchylistSection = document.getElementById("crunchylist");
+      var historySection = document.getElementById("history");
+
+      // Get the buttons that trigger section switching
+      var crunchylistButton = document.getElementById("crunchylist-button");
+      var historyButton = document.getElementById("history-button");
+
+      // Show Crunchylist section by default
+      showCrunchylistSection();
+
+      // Add event listeners to the buttons
+      crunchylistButton.addEventListener("click", function() {
+        showCrunchylistSection();
+      });
+
+      historyButton.addEventListener("click", function() {
+        showHistorySection();
+      });
+
+      function showCrunchylistSection() {
+        // Show the Crunchylist section and hide the History section
+        crunchylistSection.style.display = "block";
+        historySection.style.display = "none";
+
+        // Set the active class on the Crunchylist button
+        crunchylistButton.classList.add("active");
+        historyButton.classList.remove("active");
+      }
+
+      function showHistorySection() {
+        // Show the History section and hide the Crunchylist section
+        historySection.style.display = "block";
+        crunchylistSection.style.display = "none";
+
+        // Set the active class on the History button
+        historyButton.classList.add("active");
+        crunchylistButton.classList.remove("active");
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="watchlist-profile">
+    <h1>My Lists</h1>
+    <div class="section-buttons">
+      <button id="crunchylist-button" class="active">Crunchylist</button>
+      <button id="history-button">History</button>
+    </div>
+    <div class="section-container">
+      <div class="watchlist-section" id="crunchylist">
+        <h3 class="section-heading"></h3>
+        <div class="anime-list">
+          <div class="anime-item">
+            <a href="anime1.html"><img src="eyml4k816uled9bw.jpg" alt="Steins:Gate,"></a>
+            <h4>Steins Gate</h4>
+          </div>
+          <div class="anime-item">
+            <a href="anime2.html"><img src="de6e253cd1425a97f77cc164b52e9bc5.jpg" alt="Demon Slayer"></a>
+            <h4>Demon Slayer</h4>
+          </div>
+        </div>
+      </div>
+      <div class="watchlist-section" id="history">
+        <h3 class="section-heading"></h3>
+        <div class="anime-list">
+          <div class="anime-item">
+            <a href="anime1.html"><img src="4-44912_death-note-wallpaper-4k.jpg" alt="Death Note"></a>
+            <h4>Death Note</h4>
+          </div>
+          <div class="anime-item">
+            <a href="anime2.html"><img src="rsz_thumb-1920-699054.jpg" alt="Haikyuu"></a>
+            <h4>Haikyuu</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

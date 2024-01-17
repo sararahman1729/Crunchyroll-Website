@@ -1,0 +1,93 @@
+body {
+    background:  url('img1.jpg');
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .signup-box {
+    width: 360px;
+    height: 830px;
+    margin: auto;
+    background: linear-gradient(to bottom right, #bb94ca, #db97b4, #8787db);
+    border-radius: 3px;
+  }
+  
+  
+  h1 {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  form {
+    width: 300px;
+    margin-left: 20px;
+  }
+  
+  form label {
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  }
+ /*
+  .button {
+  background-color: #3b0547;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 20px 0;
+  border: 1px solid;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+button:hover{
+  border-color: #611a82;
+  transition: .5s;
+}
+*/
+.button {
+  font-family: 'Times New Roman', Times, serif;
+  width: 320px;
+  height: 35px;
+  margin-top: 20px;
+  border: 1px solid;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: #7416a7;
+  color: white;
+  font-size: 18px;
+}
+.button:hover{
+  border-color: #611a82;
+  transition: .5s;
+}
+  p {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  .para-2 {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    margin-top: -10px;
+  }
+  .para-2 a {
+    color: #000000;
+  }
+  
+  
