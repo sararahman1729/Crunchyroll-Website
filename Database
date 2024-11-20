@@ -1,0 +1,1560 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 07, 2023 at 04:26 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `crunchyroll`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `Address` varchar(80) NOT NULL,
+  `City` varchar(40) NOT NULL,
+  `UID` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`Address`, `City`, `UID`) VALUES
+('67/8 gssyt,susty,London,Uk', 'London', 11),
+('45/09 gfty,Paris,France', 'Paris', 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime`
+--
+
+CREATE TABLE `anime` (
+  `aid` int(20) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `episodes` int(50) NOT NULL,
+  `Summary` varchar(900) NOT NULL,
+  `publisher` varchar(200) NOT NULL,
+  `cr_id` int(10) DEFAULT NULL,
+  `uid` int(100) DEFAULT NULL,
+  `img` varchar(2000) DEFAULT NULL,
+  `video_url` varchar(3000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `anime`
+--
+
+INSERT INTO `anime` (`aid`, `title`, `author`, `episodes`, `Summary`, `publisher`, `cr_id`, `uid`, `img`, `video_url`) VALUES
+(1, 'Demon Slayer: Kimetsu no Yaiba - Entertainment District Arc', 'Koyoharu Gotouge', 11, 'Tanjiro and his friends accompany the Hashira Tengen Uzui to an entertainment district where Tengenâ€™s female ninja agents were gathering information on a demon before they suddenly disappeared. In order to investigate, Tanjiro and the others disguise themselves as women to sneak in!\'', 'ufotable', 10, 1, NULL, NULL),
+(2, 'Fruits Basket the Final Season', ' Natsuki Takaya', 13, '\'The final arc of Fruits Basket.\'', 'TMS Entertainment', 10, 1, NULL, NULL),
+(3, 'Steins;Gate', 'Jukki Hanada', 24, '\"The eccentric mad scientist Okabe, his childhood friend Mayuri, and the otaku hacker Daru have banded together to form the Future Gadget Research Laboratory, and spend their days in a ramshackle laboratory hanging out and occasionally attempting to invent incredible, yet generally useless, futuristic gadgets. However, their claymore is a hydrator and their hair dryer flips breakers, and the only invention thatâ€™s even remotely interesting is their Phone Microwave, which transforms bananas into oozing green gel. But when an experiment goes awry the gang discovers that the Phone Microwave can also send text messages to the past. And what\'s more, the words they send can affect the flow of time and have unforeseen, far-reaching consequences...\"', 'WHITE FOX', 20, 2, NULL, NULL),
+(4, 'Fullmetal Alchemist: Brotherhood', 'Hiromu Arakawa', 64, '\"The foundation of alchemy is based on the law of equivalent exchange; you cannot produce something from nothing. As such, alchemy is bound by one taboo - human transmutation. Four years ago two young brothers, Edward and Alphonse Elric, broke this taboo when they tried to resurrect their dead mother. During the process Al\'s body disintegrated and Ed lost his leg. In a desperate attempt to prevent his brother from disappearing completely, Ed sacrificed one of his arms so he could affix Al\'s soul to a suit of armor. When his missing limbs are replaced by auto mail parts, Ed bears the name of the Fullmetal Alchemist - the youngest ever State Alchemist and dog of the military. Now, alongside his brother, Ed uses his status within the military to attempt to find any way that he can return their bodies back to their original state.\"', 'Bones', 30, 3, NULL, NULL),
+(5, 'The Promised Neverland', 'Kaiu Shirai', 12, '\'Emma, Norman, Ray, and many other \"siblings\" live at an isolated orphanage cut off from the outside world. They live a charmed life surrounded by friends and watched over by Mama, their caretaker, until they leave the house for a foster family by the age of twelve. The only rule is that they must never venture outside of the gate that isolates them from the rest of society, for dangers await. But one day, the children learn the true horror of what\\\'s in store for their short lives...\'', 'CloverWorks', 10, 1, NULL, NULL),
+(6, 'Jujutsu Kaisen', 'Gege Akutami', 24, '\'Although Yuji Itadori looks like your average teenager, his immense physical strength is something to behold! Every sports club wants him to join, but Itadori would rather hang out with the school outcasts in the Occult Research Club. One day, the club manages to get their hands on a sealed cursed object. Little do they know the terror they all unleash when they break the seal ¦\'', 'MAPPA', 30, 3, NULL, NULL),
+(7, 'Spirited Away', 'Hayao Miyazaki', 1, '\"Chihiro and her family are on their way to their new home, when they discover an abandoned amusement park. After Chihiro\'s family mysteriously turn into pigs, she is thrown into a surreal world of magic and fantasy. Join her as she struggles to survive in the bathhouse of the gods, ruled by an evil witch who has stolen not only her name, but her way back to the real world.\"', 'Studio Ghibli', 50, 5, NULL, NULL),
+(8, 'Attack on Titan The Final Season', 'Hajime Isayama', 16, '\"It\'s been four years since the Scout Regiment reached the shoreline, and the world looks different now. Things are heating up as the fate of the Scout Regiment and the people of Paradis are determined at last. However, Eren is missing. Will he reappear before age-old tensions between Marleyans and Eldians result in the war of all wars?\"', 'MAPPA', 40, 4, NULL, NULL),
+(9, 'Demon Slayer: Kimetsu no Yaiba Movie - Mugen Train', 'Koyoharu Gotouge', 1, '\'Tanjirou and the group have completed their rehabilitation training at the Butterfly Mansion, and they arrive to their next mission on the Mugen Train, where over 40 people have disappeared in a very short period of time. Tanjirou and\\xa0Nezuko, along with Zenitsu and Inosuke, join one of the most powerful swordsmen within the Demon Slayer Corps, Flame Hashira Rengoku Kyoujurou, to face the demon aboard the Mugen Train on track to despair.\'', 'ufotable', 30, 3, NULL, NULL),
+(10, 'Haikyuu!! Karasuno High School vs Shiratorizawa Academy', 'Gege Akutami', 10, '\'Picking up where the second season ended, the boys prepare to finally face off for the right to represent the prefecture in the volleyball national championship. Despite being known as The Fallen Champions, Karasuno is determined to take down the powerhouse that is the Shiratorizawa High volleyball team. As Hinata comes closer to fulfilling his promise to defeat Ushijimaaes team, will the Flightless Crows finally find their wings and soar above the best school in the prefecture?\'', 'production I.G', 40, 4, NULL, NULL),
+(11, 'Your Name', 'Makoto Shinkai', 1, '\'Mitsuha and Taki are two total strangers living completely different lives. But when Mitsuha makes a wish to leave her mountain town and for the bustling city of Tokyo, they become connected in a bizarre way. She dreams she is a boy living in Tokyo while Taki dreams he is a girl from a rural town that he never been to. What does their newfound connection mean? And how will it bring them together?\'', 'CoMix Wave Films', 90, 9, NULL, NULL),
+(12, 'Hunter x Hunter ', 'Yoshihiro Togashi', 148, '\'Drawn to the mystique of the unknown, Hunters travel the world in search of terrifying creatures, incredible riches, and unexplored lands. Gon Freecss is a naive-yet-determined young boy who aspires to join the ranks of these individuals, in order to find his missing father Ging - a master of the profession himself. To reach his goal, he partakes in the formidable Hunter Exam, a series of tests that push the participants to their physical and mental limits, with a Hunter License as the prize. During the exam Gon befriends vengeful Kurapika, doctor-to-be Leorio, and skilled assassin Killua, who have entered for their own reasons. But with the sinister Hisoka standing in their way, will Gon and his friends be able to succeed in obtaining their reward, or even escaping with their lives?\'', 'MADHOUSE', 70, 7, NULL, NULL),
+(13, 'A Silent Voice', 'Yoshitoki Oima', 1, '\'After transferring into a new school, a deaf girl, Shouko Nishimiya, is bullied by the popular Shouya Ishida. As Shouya continues to bully Shouko, the class turns its back on him. Shouko transfers and Shouya grows up as an outcast. Alone and depressed, the regretful Shouya finds Shouko to make amends.\'', 'Kyoto Animation', 60, 6, NULL, NULL),
+(14, 'One Piece', 'Eiichiro Oda', 1000, 'A pirate adventure like no other.', 'Shueisha', 30, 3, NULL, NULL),
+(15, 'My Hero Academia', 'Kohei Horikoshi', 100, 'A world where superheroes are the norm.', 'Shueisha', 60, 6, NULL, NULL),
+(16, 'Naruto', 'Masashi Kishimoto', 720, 'A ninja\'s journey to become the strongest.', 'Shueisha', 70, 7, NULL, NULL),
+(17, 'Sword Art Online', 'Reki Kawahara', 100, 'Virtual reality gaming gone wrong.', 'ASCII Media Works', 60, 6, NULL, NULL),
+(18, 'Black Clover', 'Yuki Tabata', 170, 'A young boy with no magic aims to become the Wizard King.', 'Shueisha', 90, 9, NULL, NULL),
+(19, 'Fairy Tail', 'Hiro Mashima', 328, 'A guild of mages and their adventures.', 'Kodansha', 70, 7, NULL, NULL),
+(20, 'One Punch Man', 'ONE', 24, 'A superhero who defeats villains with a single punch.', 'Shueisha', 60, 6, NULL, NULL),
+(21, 'Tokyo Ghoul', 'Sui Ishida', 48, 'A tale of ghouls and humans living in Tokyo.', 'Shueisha', 60, 6, NULL, NULL),
+(22, 'Bleach', 'Tite Kubo', 366, 'A Soul Reaper protects the living world from evil spirits.', 'Shueisha', 80, 8, NULL, NULL),
+(23, 'Fate/stay night: Unlimited Blade Works', 'Kinoko Nasu', 26, 'A battle royale between mages and their summoned heroes.', 'Type-Moon', 30, 3, NULL, NULL),
+(24, 'JoJo\'s Bizarre Adventure', 'Hirohiko Araki', 152, 'Bizarre adventures of the Joestar family.', 'Shueisha', 10, 1, NULL, NULL),
+(25, 'Code Geass', 'Goro Taniguchi', 50, 'A genius strategist leads a rebellion against an empire.', 'Sunrise', 80, 8, NULL, NULL),
+(26, 'Vinland Saga', 'Makoto Yukimura', 24, 'A Viking\'s quest for revenge and redemption.', 'Kodansha', 70, 7, NULL, NULL),
+(27, 'Bungo Stray Dogs', 'Kafka Asagiri', 48, 'A detective agency with superpowered members.', 'Kadokawa', 20, 2, NULL, NULL),
+(28, 'Akame ga Kill!', 'Takahiro', 24, 'A group of assassins battles a corrupt empire.', 'Square Enix', 60, 6, NULL, NULL),
+(29, 'Mob Psycho 100', 'ONE', 25, 'A powerful psychic and his adventures.', 'Shogakukan', 20, 2, NULL, NULL),
+(30, 'Your Lie in April', 'Naoshi Arakawa', 22, 'A pianist finds inspiration through a violinist.', 'Kodansha', 30, 3, NULL, NULL),
+(31, 'Clannad', 'Key', 23, 'A story of love, friendship, and miracles.', 'VisualArts', 30, 6, NULL, NULL),
+(32, 'Anohana: The Flower We Saw That Day', 'Mari Okada', 11, 'A group of friends reunite to fulfill a wish of their deceased friend.', 'Aniplex', 60, 6, NULL, NULL),
+(33, 'Violet Evergarden', 'Kana Akatsuki', 13, 'A former soldier finds purpose as an Auto Memory Doll.', 'Kyoto Animation', 60, 6, NULL, NULL),
+(34, 'March Comes in Like a Lion', 'Chika Umino', 44, 'A young shogi players journey of self-discovery.', 'Aniplex', 20, 2, NULL, NULL),
+(35, 'Death Note', 'Tsugumi Ohba', 37, 'A high-stakes battle between a genius detective and a supernatural notebook.', 'Shueisha', 70, 7, NULL, NULL),
+(36, '5 Centimeters Per Second', 'Makoto Shinkai', 3, 'A story of long-distance love and fleeting connections.', 'CoMix Wave Films', 70, 7, NULL, NULL),
+(37, 'Tokyo Magnitude 8.0', 'Kiyohiro Hashimoto', 11, 'The aftermath of a major earthquake in Tokyo.', 'Bones', 30, 3, NULL, NULL),
+(38, 'Fruits Basket (2019)', 'Natsuki Takaya', 63, 'A girls life changes after she encounters the Sohma family.', 'Hakusensha', 40, 4, NULL, NULL),
+(39, 'Angel Beats!', 'Jun Maeda', 13, 'A group of students rebels against their fate in the afterlife.', 'VisualArt\'s', 80, 8, NULL, NULL),
+(40, 'The Garden of Words', 'Makoto Shinkai', 1, 'A bond forms between a shoemaker and a young woman.', 'CoMix Wave Films', 60, 6, NULL, NULL),
+(41, 'Wolf Children', 'Mamoru Hosoda', 1, 'A mother raises her half-wolf children in the countryside.', 'Studio Chizu', 60, 6, NULL, NULL),
+(42, 'Neon Genesis Evangelion', 'Hideaki Anno', 26, 'Pilots battle mysterious beings in giant mechas.', 'Gainax', 70, 7, NULL, NULL),
+(43, 'Rurouni Kenshin: Trust and Betrayal', 'Nobuhiro Watsuki', 4, 'A prequel revealing the dark past of Kenshin Himura.', 'Shueisha', 70, 7, NULL, NULL),
+(44, 'Erased', 'Kei Sanbe', 12, 'A man travels back in time to prevent a series of murders.', 'Kadokawa', 40, 4, NULL, NULL),
+(45, 'Grave of the Fireflies', 'Akiyuki Nosaka', 1, 'The devastating impact of war on two siblings.', 'Shinchosha', 30, 3, NULL, NULL),
+(46, 'Ghost in the Shell', 'Masamune Shirow', 26, 'Cybernetic operatives tackle cybercrime and philosophical questions.', 'Kodansha', 80, 8, NULL, NULL),
+(47, 'Psycho-Pass', 'Gen Urobuchi', 22, 'In a dystopian future, a system determines criminal intent.', 'Shueisha', 30, 3, NULL, NULL),
+(48, 'Cowboy Bebop', 'Shinichiro Watanabe', 26, 'Bounty hunters explore the depths of space.', 'Kadokawa Shoten', 60, 6, NULL, NULL),
+(49, 'Serial Experiments Lain', 'Yasuyuki Ueda', 13, 'A teenage girl becomes entangled in a mysterious virtual world.', 'Pioneer LDC', 60, 6, NULL, NULL),
+(50, 'Knights of Sidonia', 'Tsutomu Nihei', 24, 'Humanity fights against giant aliens in space.', 'Kodansha', 50, 5, NULL, NULL),
+(51, 'Trigun', 'Yasuhiro Nightow', 26, 'A pacifist gunslinger with a bounty on his head.', 'Tokuma Shoten', 60, 6, NULL, NULL),
+(52, 'Ergo Proxy', 'Dai Sato', 23, 'A detective unravels a conspiracy in a post-apocalyptic world.', 'Manglobe', 60, 6, NULL, NULL),
+(53, 'Akira', 'Katsuhiro Otomo', 1, 'A secret military project leads to chaos in Neo-Tokyo.', 'Kodansha', 50, 5, NULL, NULL),
+(54, 'Gurren Lagann', 'Gainax', 27, 'A group of rebels fights against tyrannical forces using giant robots.', 'ASCII Media Works', 50, 5, NULL, NULL),
+(55, 'Planetes', 'Makoto Yukimura', 26, 'Space debris collectors dream of exploring the stars.', 'Kodansha', 50, 5, NULL, NULL),
+(56, 'Aldnoah.Zero', 'Gen Urobuchi', 24, 'Earth defends against an alien empire in a war for survival.', 'Houbunsha', 30, 3, NULL, NULL),
+(57, 'No. 6', 'Atsuko Asano', 11, 'A boy uncovers the secrets of a utopian city.', 'Kodansha', 90, 9, NULL, NULL),
+(58, 'Robotics;Notes', 'Nitroplus', 22, 'A robotics club uncovers a conspiracy related to their giant robot project.', 'Mages', 100, 10, NULL, NULL),
+(59, 'Shinsekai Yori', 'Yusuke Kishi', 25, 'A group of friends navigate a dystopian society with psychic powers.', 'Kodansha', 10, 1, NULL, NULL),
+(60, 'Guilty Crown', 'Hiroyuki Yoshino', 22, 'A teenager inherits a power that could save or destroy Japan.', 'Square Enix', 20, 2, NULL, NULL),
+(61, 'Black Butler', 'Yana Toboso', 24, 'A young boy becomes a demon butler to avenge his parents.', 'Square Enix', 10, 1, NULL, NULL),
+(62, 'Higurashi: When They Cry', 'Ryukishi07', 26, 'A group of friends gets caught in a mysterious curse in their small village.', 'Geneon Entertainment', 20, 2, NULL, NULL),
+(63, 'Corpse Party: Tortured Souls', 'Makoto Kedouin', 4, 'Students trapped in a cursed school must survive the vengeful spirits haunting them.', 'Asread', 30, 3, NULL, NULL),
+(64, 'Elfen Lied', 'Lynn Okamoto', 13, 'A mutant girl with dangerous powers escapes from a research facility and seeks revenge.', 'VAP', 40, 4, NULL, NULL),
+(65, 'Ghost Hunt', 'Fuyumi Ono', 25, 'A high school girl becomes involved in paranormal investigations with a team of ghost hunters.', 'TV Tokyo', 50, 5, NULL, NULL),
+(66, 'Mononoke', 'Kenji Nakamura', 12, 'A medicine seller battles malevolent spirits using his knowledge of their true forms.', 'Toei Animation', 60, 6, NULL, NULL),
+(67, 'Boogiepop Phantom', 'Kouhei Kadono', 12, 'A mysterious entity known as Boogiepop appears in a city, unraveling supernatural events.', 'Madhouse', 70, 7, NULL, NULL),
+(68, 'Mirai Nikki', 'Sakae Esuno', 26, 'A young man gains a diary that predicts the future, leading him into a deadly survival game.', 'Asread', 80, 8, NULL, NULL),
+(69, 'Yamishibai: Japanese Ghost Stories', 'Hiroyuki Okiura', 13, 'Short horror stories told through traditional Japanese paper theater art style.', 'TV Tokyo', 90, 9, NULL, NULL),
+(70, 'School-Live!', 'Norimitsu Kaihou', 12, 'A group of school girls tries to survive in a post-apocalyptic world filled with zombies.', 'AT-X', 100, 10, NULL, NULL),
+(71, 'When They Cry', 'Ryukishi07', 26, 'A wealthy family is trapped in a deadly game on a secluded island.', 'Geneon Entertainment', 10, 1, NULL, NULL),
+(72, 'Hell Girl', 'Hiroshi Watanabe', 26, 'A website allows people to send their enemies to Hell by making a contract with Hell Girl.', 'Animax', 10, 1, NULL, NULL),
+(73, 'Blood+ season 1', 'Junichi Fujisaku', 13, 'A teenage girl fights against vampires with her superhuman abilities and a mysterious organization.', 'Aniplex', 10, 1, NULL, NULL),
+(74, 'Paranoia Agent', 'Satoshi Kon', 13, 'A string of assaults committed by a mysterious boy named Lil Slugger\" baffles detectives.', 'Madhouse', 10, 1, NULL, NULL),
+(75, 'Gintama', 'Hideaki Sorachi', 367, 'A comedic samurai story set in an alternate Edo period.', 'Sunrise', 10, 1, NULL, NULL),
+(76, 'The Disastrous Life of Saiki K.', 'Shuichi Aso', 120, 'A psychic teenager navigates the challenges of daily life.', 'J.C.Staff', 40, 4, NULL, NULL),
+(77, 'Nichijou - My Ordinary Life', 'Keiichi Arawi', 26, 'Slice-of-life comedy featuring absurd and ordinary events.', 'Kyoto Animation', 30, 3, NULL, NULL),
+(78, 'Konosuba: Gods Blessing on This Wonderful World!', 'Natsume Akatsuki', 22, 'An ordinary boy ends up in a comical fantasy world.', 'Studio Deen', 60, 6, NULL, NULL),
+(79, 'Great Teacher Onizuka', 'Tohru Fujisawa', 43, 'A former gang member becomes a teacher and inspires his students.', 'Studio Pierrot', 30, 3, NULL, NULL),
+(80, 'Daily Lives of High School Boys', 'Yasuhiro Takemoto', 12, 'A humorous portrayal of the daily lives of high school boys.', 'Sunrise', 40, 4, NULL, NULL),
+(81, 'Barakamon', 'Satsuki Yoshino', 12, 'A calligrapher finds inspiration in a rural island community.', 'Kinema Citrus', 100, 10, NULL, NULL),
+(82, 'Monthly Girls Nozaki-kun', 'Izumi Tsubaki', 12, 'A high school girl discovers her crush is a popular manga artist.', 'Doga Kobo', 50, 5, NULL, NULL),
+(83, 'The Devil Is a Part-Timer!', 'Satoshi Wagahara', 13, 'A demon lord ends up working at a fast-food restaurant.', 'White Fox', 60, 6, NULL, NULL),
+(84, 'Hinamatsuri', 'Masao Otake', 12, 'A yakuza member takes care of a powerful psychic girl.', 'Feel', 70, 7, NULL, NULL),
+(85, 'Kaguya-sama: Love is War', 'Aka Akasaka', 24, 'Two high school geniuses engage in a battle of love and wits.', 'A-1 Pictures', 50, 5, NULL, NULL),
+(86, 'Toradora!', 'Yuyuko Takemiya', 25, 'A comedic romance between two high school students with contrasting personalities.', 'J.C.Staff', 80, 8, NULL, NULL),
+(87, 'Miss Kobayashis Dragon Maid', 'Coolkyousinnjya', 13, 'A dragon becomes a maid and forms a bond with her human employer.', 'Kyoto Animation', 80, 8, NULL, NULL),
+(88, 'K-On! season 1', 'Kakifly', 13, 'A group of high school girls form a band and enjoy their school life.', 'Kyoto Animation', 60, 6, NULL, NULL),
+(89, 'Ouran High School Host Club', 'Bisco Hatori', 26, 'A girl disguises herself as a boy in a host club for wealthy students.', 'Bones', 40, 4, '', NULL),
+(90, 'Sakamoto Desu ga?', 'Nami Sano', 12, 'A high school student named Sakamoto is perfect in every way.', 'Studio Deen', 60, 6, NULL, NULL),
+(91, 'Asobi Asobase', 'Rin Suzukawa', 12, 'Three girls engage in bizarre and hilarious after-school activities.', 'Hakusensha', 60, 6, NULL, NULL),
+(92, 'Osomatsu-san', 'Fujio Akatsuka', 25, 'A comedy about the misadventures of the sextuplet Matsuno brothers.', 'Shueisha', 40, 4, NULL, NULL),
+(93, 'Havent You Heard? Im Sakamoto', 'Nami Sano', 12, 'A high school student named Sakamoto is cool and popular.', 'Enterbrain', 50, 5, NULL, NULL),
+(94, 'Haikyuu!! 1st Season', 'Haruichi Furudate', 85, 'A high school volleyball team strives to reach the national championships.', 'Shueisha', 10, 1, NULL, NULL),
+(95, 'Kuroko\'s Basketball', 'Tadatoshi Fujimaki', 75, 'A high school basketball team aims to defeat the \"Generation of Miracles.\"', 'Shueisha', 20, 2, NULL, NULL),
+(96, 'Free!', 'Koji Oji', 36, 'A group of friends reunite in a swimming club and pursue their passion for swimming.', 'Kyoto Animation', 20, 2, NULL, NULL),
+(97, 'Major', 'Takuya Mitsuda', 154, 'Follows the journey of a young baseball player from childhood to professional career.', 'Shogakukan', 40, 4, NULL, NULL),
+(98, 'Yowamushi Pedal', 'Wataru Watanabe', 63, 'An otaku joins a high school cycling club and discovers his talent for the sport.', 'Akita Shoten', 60, 6, NULL, NULL),
+(99, 'Ace of Diamond', 'Yuuji Terajima', 178, 'A high school baseball team aims for the national tournament with their talented pitcher.', 'Kodansha', 70, 7, NULL, NULL),
+(100, 'Slam Dunk', 'Takehiko Inoue', 101, 'A delinquent joins a high school basketball team and becomes a skilled player.', 'Shueisha', 80, 8, NULL, NULL),
+(101, 'Hajime no Ippo', 'George Morikawa', 127, 'A bullied high school student becomes a professional boxer with the help of a coach.', 'Kodansha', 90, 9, NULL, NULL),
+(102, 'Prince of Tennis', 'Takeshi Konomi', 178, 'A skilled tennis player joins a middle school tennis club and aims for victory.', 'Shueisha', 70, 7, NULL, NULL),
+(103, 'Eyeshield 21', 'Riichiro Inagaki', 145, 'A timid high school student becomes a talented American football player.', 'Shueisha', 60, 6, NULL, NULL),
+(104, 'Captain Tsubasa', 'Yoichi Takahashi', 128, 'Follows the journey of a young soccer player aiming to become a professional.', 'Shueisha', 50, 5, NULL, NULL),
+(105, 'Chihayafuru', 'Yuki Suetsugu', 75, 'A high school girl participates in competitive karuta, a traditional card game.', 'Kodansha', 30, 3, NULL, NULL),
+(106, 'Hikaru no Go', 'Yumi Hotta', 75, 'A boy discovers his passion for the game of Go and aims to become a professional player.', 'Shueisha', 50, 5, NULL, NULL),
+(107, 'Run with the Wind', 'Shion Miura', 23, 'A group of college students train and compete in long-distance running.', 'Kodansha', 10, 1, NULL, NULL),
+(108, 'Baby Steps', 'Hikaru Katsuki', 50, 'A studious high school student takes up tennis and pursues a professional career.', 'Kodansha', 40, 4, NULL, NULL),
+(109, 'Days', 'Tsuyoshi Yasuda', 24, 'A high school student joins a soccer team and strives to improve his skills.', 'Kodansha', 60, 6, NULL, NULL),
+(110, 'All Out!!', 'Shiori Amase', 25, 'A high school rugby team works together to overcome challenges and succeed.', 'Kodansha', 70, 7, NULL, NULL),
+(111, 'Ping Pong the Animation', 'Taiyo Matsumoto', 11, 'A group of talented table tennis players face off in intense matches.', 'Kodansha', 60, 6, NULL, NULL),
+(112, 'Yuri!!! on Ice', 'Mitsurou Kubo', 12, 'A figure skater makes a comeback with the help of a talented coach.', 'Avex Pictures', 70, 7, NULL, NULL),
+(113, 'Megalo Box', 'Chikara Sakuma', 13, 'A talented underground boxer fights his way to the top in a futuristic sport.', 'TBS', 100, 10, NULL, NULL),
+(114, 'Keijo!!!!!!!!', 'Daichi Sorayomi', 12, 'A group of girls participate in a unique sport that involves using their butts and breasts.', 'Shogakukan', 60, 6, NULL, NULL),
+(115, 'Blue Exorcist', 'Kazue Kato', 25, 'A boy discovers he is the son of Satan and joins an exorcist academy to defeat demons.', 'Shueisha', 10, 1, NULL, NULL),
+(116, 'Noragami', 'Adachitoka', 25, 'A minor god takes on odd jobs to earn followers and fulfill his ambitions.', 'Kodansha', 10, 1, NULL, NULL),
+(117, 'Dr.Gray-man', 'Katsura Hoshino', 116, 'A young exorcist fights against the Millennium Earl and his army of demons.', 'Shueisha', 10, 1, NULL, NULL),
+(118, 'Soul Eater', 'Atsushi Ohkubo', 51, 'Students at a school for weapons and meisters battle against evil souls and witches.', 'Square Enix', 10, 1, NULL, NULL),
+(119, 'InuYasha', 'Rumiko Takahashi', 167, 'A modern-day girl travels back in time and joins forces with a half-demon to retrieve the shards of a powerful jewel.', 'Shogakukan', 10, 1, NULL, NULL),
+(120, 'Fate/Stay Night', 'Type-Moon', 24, 'Mages and their summoned Servants battle in a deadly tournament for the Holy Grail.', 'Kadokawa Shoten', 10, 1, NULL, NULL),
+(121, 'Nura: Rise of the Yokai Clan', 'Hiroshi Shiibashi', 48, 'A boy inherits his grandfather\'s role as the leader of a yokai clan and protects humans from supernatural threats.', 'Shueisha', 20, 2, NULL, NULL),
+(122, 'Seraph of the End', 'Takaya Kagami', 24, 'After a deadly virus wipes out most of humanity, a group of orphaned children is caught in a war between vampires and humans.', 'Shueisha', 20, 2, NULL, NULL),
+(123, 'Darker than Black', 'Tensai Okamura', 37, 'Contractors, individuals with supernatural powers, carry out secret missions in a world filled with mystery.', 'Square Enix', 20, 2, NULL, NULL),
+(124, 'The Ancient Magus\' Bride', 'Kore Yamazaki', 24, 'A girl is sold to a mysterious mage and becomes his apprentice in a world of magic and mythical creatures.', 'Mag Garden', 20, 2, NULL, NULL),
+(125, 'Blood+ season 2', 'Junichi Fujisaku', 12, 'A girl discovers she is a Chiropteran, a creature that feeds on blood, and fights against them with the help of her allies.', 'Kadokawa Shoten', 20, 2, NULL, NULL),
+(126, 'Vampire Knight', 'Matsuri Hino', 26, 'A girl attends a school where vampires and humans coexist and gets caught up in a complex love triangle.', 'Hakusensha', 20, 2, NULL, NULL),
+(127, 'Monster', 'Naoki Urasawa', 74, 'A brilliant surgeon pursues a psychopathic murderer in a suspenseful cat-and-mouse chase.', 'Shogakukan', 30, 3, NULL, NULL),
+(128, 'Paranoia Agent', 'Satoshi Kon', 13, 'A series of mysterious attacks by a roller-skating boy named Lil\' Slugger baffles detectives.', 'Kodansha', 40, 4, NULL, NULL),
+(129, 'Perfect Blue', 'Yoshikazu Takeuchi', 1, 'A former pop idol transitions into acting but is haunted by a stalker and her own distorted perception of reality.', 'Gentosha', 40, 4, NULL, NULL),
+(130, 'Higurashi: When They Cry', 'Ryukishi07', 26, 'A series of gruesome murders plague a small village, and a boy gets caught up in the mystery.', 'Square Enix', 30, 3, NULL, NULL),
+(131, 'Terror in Resonance', 'Shinichiro Watanabe', 11, 'Two teenagers with mysterious pasts orchestrate a series of terrorist acts in Tokyo.', 'Aniplex', 40, 4, NULL, NULL),
+(132, 'Future Diary', 'Sakae Esuno', 26, 'A boy discovers a diary that predicts the future, but he becomes involved in a deadly survival game.', 'Kadokawa Shoten', 30, 3, NULL, NULL),
+(133, 'Death Parade', 'Yuzuru Tachikawa', 12, 'Two souls enter a bar run by a mysterious bartender and must participate in games that determine their fate.', 'Madhouse', 40, 4, NULL, NULL),
+(134, 'Another', 'Yukito Ayatsuji', 12, 'A transfer student uncovers a curse that haunts his new school, leading to a series of gruesome deaths.', 'Kadokawa Shoten', 30, 3, NULL, NULL),
+(135, 'Elfen Lied', 'Lynn Okamoto', 13, 'A species with telekinetic powers escapes from a research facility and seeks revenge against humanity.', 'Shueisha', 30, 4, NULL, NULL),
+(136, 'Future Boy Conan', 'Hayao Miyazaki', 26, 'A young boy and a girl survive a cataclysmic event and embark on an adventure in a post-apocalyptic world.', 'Nippon Animation', 30, 3, NULL, NULL),
+(137, 'Zankyou no Terror', 'Shinichiro Watanabe', 11, 'Two teenage terrorists leave clues for the police as they carry out acts of destruction in Tokyo.', 'Aniplex', 30, 3, NULL, NULL),
+(138, 'Happy Sugar Life', 'Tomiyaki Kagisora', 12, 'A high school girl becomes involved in a dangerous relationship with a young girl she meets.', 'Square Enix', 40, 4, NULL, NULL),
+(139, 'K-On! season 2', 'Kakifly', 26, 'A group of high school girls form a band and experience everyday adventures together.', 'Houbunsha', 50, 5, NULL, NULL),
+(140, 'Lucky Star', 'Kagami Yoshimizu', 24, 'The daily lives and humorous antics of a group of high school girls.', 'Kadokawa Shoten', 50, 5, NULL, NULL),
+(141, 'Barakamon', 'Satsuki Yoshino', 12, 'A calligraphy artist moves to a rural island and learns valuable life lessons from the locals.', 'Square Enix', 50, 5, NULL, NULL),
+(142, 'Nichijou - My Ordinary Life', 'Keiichi Arawi', 26, 'The comedic and absurd daily lives of a group of high school students.', 'Kadokawa Shoten', 50, 5, NULL, NULL),
+(143, 'Silver Spoon', 'Hiromu Arakawa', 22, 'A city boy attends an agricultural school and discovers the realities of farming and rural life.', 'Shogakukan', 50, 5, NULL, NULL),
+(144, 'Non Non Biyori', 'Atto', 12, 'The peaceful and heartwarming adventures of a group of schoolgirls in a rural village.', 'Media Factory', 50, 5, NULL, NULL),
+(145, 'Usagi Drop', 'Yumi Unita', 11, 'A single man decides to raise his grandfathers illegitimate child and faces the challenges of parenthood.', 'Shodensha', 50, 5, NULL, NULL),
+(146, 'Aria', 'Kozue Amano', 13, 'A young girl becomes a gondolier in the city of Neo-Venezia and discovers the beauty of everyday life.', 'Mag Garden', 50, 5, NULL, NULL),
+(147, 'Sweetness and Lightning', 'Gido Amagakure', 12, 'A widowed father learns to cook with the help of his young daughter and a high school student.', 'Kodansha', 50, 5, NULL, NULL),
+(148, 'Natsumes Book of Friends', 'Yuki Midorikawa', 74, 'A boy inherits a book of spirits from his grandmother and forms friendships with the supernatural beings.', 'Hakusensha', 50, 5, NULL, NULL),
+(149, 'A Place Further than the Universe', 'Yoriko Takao', 13, 'A group of high school girls embark on an expedition to Antarctica and discover the true meaning of friendship.', 'Media Factory', 50, 5, NULL, NULL),
+(150, 'Hanasaku Iroha', 'Mari Okada', 26, 'A teenage girl is forced to work at her estranged grandmothers hot spring inn and finds personal growth.', 'Genco', 50, 5, NULL, NULL),
+(151, 'Yuru Camp', 'Afro', 12, 'A group of girls enjoy camping and the beauty of nature while forming lasting friendships.', 'Houbunsha', 50, 5, NULL, NULL),
+(152, 'Hyouka', 'Honobu Yonezawa', 22, 'A high school student joins a classic literature club and solves various mysteries with his friends.', 'Kadokawa Shoten', 50, 5, NULL, NULL),
+(153, 'Flying Witch', 'Chihiro Ishizuka', 12, 'A young witch moves to the countryside and experiences the daily life of a witch in training.', 'Kodansha', 50, 5, NULL, NULL),
+(154, 'Kobayashi-san Chi no Maid Dragon', 'Coolkyoushinja', 13, 'A dragon becomes a maid for a single office worker and brings chaos and comedy into her life.', 'Futabasha', 50, 5, NULL, NULL),
+(155, 'Amanchu!', 'Kozue Amano', 12, 'A shy high school girl joins a diving club and discovers the beauty and freedom of the ocean.', 'Mag Garden', 50, 5, NULL, NULL),
+(156, 'Hidamari Sketch', 'Ume Aoki', 52, 'The daily lives and artistic pursuits of a group of high school girls living in an apartment complex.', 'Houbunsha', 50, 5, NULL, NULL),
+(157, 'Tamayura', 'Junichi Sato', 12, 'A girl returns to her hometown and rediscovers her love for photography with the help of her friends.', 'Mag Garden', 50, 5, NULL, NULL),
+(158, 'Kimi to Boku', 'Kiichi Hotta', 26, 'The comedic and heartwarming adventures of a group of high school boys and their daily lives.', 'Square Enix', 50, 5, NULL, NULL),
+(159, 'Clannad: After Story', 'Key', 24, 'The continuation of the story of Tomoya Okazaki and Nagisa Furukawa as they face the challenges of adulthood and the joys and sorrows of married life.', 'TBS', 60, 6, NULL, NULL),
+(160, 'Kimi ni Todoke', 'Karuho Shiina', 25, 'A shy high school girl, Sawako Kuronuma, gradually learns to open up and make friends, while also experiencing the ups and downs of love.', 'Shueisha', 60, 6, NULL, NULL),
+(161, 'Golden Time', 'Yuyuko Takemiya', 24, 'After a tragic accident, Banri Tada loses his memories and starts a new life in law school, where he meets new friends and experiences a complicated love triangle.', 'ASCII Media Works', 60, 6, NULL, NULL),
+(162, 'Lovely Complex', 'Aya Nakahara', 24, 'A comedic love story about a tall girl, Risa Koizumi, and a short boy, Atsushi Otani, as they navigate through high school, friendship, and romance.', 'Shueisha', 60, 6, NULL, NULL),
+(163, 'Nana', 'Ai Yazawa', 47, 'The intertwining lives of two girls with the same name, Nana, as they pursue their dreams in the music industry and face the challenges of love and friendship.', 'Shueisha', 60, 6, NULL, NULL),
+(164, 'Kare Kano', 'Masami Tsuda', 26, 'The story of Yukino Miyazawa and Soichiro Arima, two high-achieving students who initially pretend to be perfect but gradually reveal their true selves and fall in love.', 'Hakusensha', 60, 6, NULL, NULL),
+(165, 'Romeo x Juliet', 'William Shakespeare', 24, 'A retelling of Shakespeare\'s classic tragedy, Romeo and Juliet, set in a fantasy world where the star-crossed lovers fight against the tyrannical rule of the Montague family.', 'Gonzo', 60, 6, NULL, NULL),
+(166, 'Weathering with You', 'Makoto Shinkai', 1, 'A high school boy runs away to Tokyo and befriends a girl who appears to be able to manipulate the weather.', 'Toho', 70, 7, NULL, NULL),
+(167, 'Koi to Uso', 'Musawo Tsumugi', 12, 'In a society where the government assigns marriage partners, a high school boy named Yukari Nejima finds himself torn between his assigned partner and his forbidden love.', 'Kodansha', 60, 6, NULL, NULL),
+(168, 'Orange', 'Ichigo Takano', 13, 'Naho Takamiya receives a letter from her future self, warning her about the regrets and decisions she will face in high school, particularly concerning a new transfer student named Kakeru Naruse.', 'Futabasha', 60, 6, NULL, NULL),
+(169, 'Ao Haru Ride', 'Io Sakisaka', 12, 'Futaba Yoshioka reconnects with her middle school crush, Kou Tanaka, who has now changed his name to Kou Mabuchi, and they navigate the complexities of love and their own past traumas.', 'Shueisha', 60, 6, NULL, NULL),
+(170, 'Kimi no Iru Machi', 'Kouji Seo', 12, 'Haruto Kirishima\'s life changes when Yuzuki Eba moves to his hometown, leading to a complicated love triangle involving Haruto\'s childhood friend, Nanami Kanzaki.', 'Kodansha', 60, 6, NULL, NULL),
+(171, 'Tsuki ga Kirei', 'Kotaro Kosugi', 12, 'The sweet and innocent love story of middle school students Kotarou Azumi and Akane Mizuno as they navigate their feelings and the challenges of adolescence.', 'Fuji TV', 60, 6, NULL, NULL),
+(172, 'Say \"I Love You\"', 'Kanae Hazuki', 13, 'The story of Mei Tachibana, a high school girl who has shut herself off from others, and her unexpected relationship with popular boy Yamato Kurosawa.', 'Kodansha', 60, 6, NULL, NULL),
+(173, 'My Little Monster', 'Robico', 13, 'The unlikely romance between the studious girl Shizuku Mizutani and the troublemaker Haru Yoshida as they learn to understand each other and their own emotions.', 'Kodansha', 60, 6, NULL, NULL),
+(174, 'Special A', 'Maki Minami', 24, 'The competitive love story of Hikari Hanazono and Kei Takishima, childhood friends and academic rivals who eventually realize their feelings for each other.', 'Hakusensha', 60, 6, NULL, NULL),
+(175, 'Whisper of the Heart', 'Aoi Hiiragi', 1, 'A coming-of-age story about a young girl named Shizuku Tsukishima who discovers her passion for writing and her journey to pursue her dreams.', 'Toho', 60, 6, NULL, NULL),
+(176, 'His and Her Circumstances', 'Masami Tsuda', 26, 'The complex relationship between Yukino Miyazawa and Soichiro Arima as they navigate their personal lives, academic pressures, and their evolving feelings for each other.', 'Hakusensha', 60, 6, NULL, NULL),
+(177, 'Tonari no Kaibutsu-kun', 'Robico', 13, 'The story of the studious Shizuku Mizutani and the delinquent Haru Yoshida as they form an unlikely friendship and romance, facing their own personal challenges along the way.', 'Kodansha', 60, 6, NULL, NULL),
+(178, 'Love, Chunibyo & Other Delusions', 'Torako', 12, 'Yuta Togashi, a former \"chunibyo\" or \"eighth-grade syndrome\" sufferer, becomes entangled with Rikka Takanashi, another chunibyo, and their eccentric adventures ensue.', 'Kyoto Animation', 60, 6, NULL, NULL),
+(179, 'Kamisama Hajimemashita', 'Julietta Suzuki', 13, 'Nanami Momozono becomes a deity and takes on the role of a land god after inheriting a shrine.', 'TMS Entertainment', 80, 8, NULL, NULL),
+(180, 'Cardcaptor Sakura', 'CLAMP', 70, 'Sakura Kinomoto discovers a set of magical cards known as Clow Cards and must capture them to prevent catastrophe.', 'Madhouse', 80, 8, NULL, NULL),
+(181, 'Sailor Moon', 'Naoko Takeuchi', 200, 'Usagi Tsukino transforms into the superheroine Sailor Moon to combat evil and protect the Earth.', 'Toei Animation', 80, 8, NULL, NULL),
+(182, 'Skip Beat!', 'Yoshiki Nakamura', 25, 'Kyoko Mogami seeks revenge against her childhood friend Sho Fuwa by entering the world of showbiz.', 'Hal Film Maker', 80, 8, NULL, NULL),
+(183, 'Kaichou wa Maid-sama!', 'Hiro Fujiwara', 26, 'Misaki Ayuzawa, the student council president of Seika High, works part-time at a maid cafe to support her family.', 'J.C.Staff', 80, 8, NULL, NULL),
+(184, 'Akatsuki no Yona', 'Mizuho Kusanagi', 24, 'Princess Yona sets out on a journey to reclaim her kingdom with the help of the four dragon warriors.', 'Pierrot', 80, 8, NULL, NULL),
+(185, 'Itazura na Kiss', 'Kaoru Tada', 25, 'Kotoko Aiharas life takes a turn when she moves in with the cold-hearted Naoki Irie after her house is destroyed.', 'TMS Entertainment', 80, 8, NULL, NULL),
+(186, 'Tonari no Kaibutsu-kun', 'Robico', 13, 'Shizuku Mizutani forms an unlikely friendship with Haru Yoshida, a seemingly delinquent boy from her school.', 'Brains Base', 80, 8, NULL, NULL),
+(187, 'Kodocha', 'Miho Obana', 102, 'Sana Kurata, a child actress, faces various challenges in her career and personal life.', 'Studio Gallop', 80, 8, NULL, NULL),
+(188, 'Honey and Clover', 'Chika Umino', 24, 'A group of art school students navigate their complex relationships and pursue their dreams.', 'J.C.Staff', 80, 8, NULL, NULL),
+(189, 'Princess Jellyfish', 'Akiko Higashimura', 11, 'Tsukimi Kurashita, an otaku who loves jellyfish, befriends a stylish cross-dressing man named Kuranosuke Koibuchi.', 'Brain\'s Base', 80, 8, NULL, NULL),
+(190, 'Parasyte -the maxim-', 'Hitoshi Iwaaki', 24, 'Shinichi Izumis life takes a dark turn when parasitic creatures invade...', 'Nippon TV', NULL, 2, NULL, NULL),
+(191, 'Berserk', 'Kentaro Miura', 25, 'Guts, a lone mercenary, seeks revenge against the demons that haunt him...', 'OLM', NULL, 2, NULL, NULL),
+(192, 'Welcome to the NHK!', 'Tatsuhiko Takimoto', 24, 'A socially withdrawn young man struggles with his reclusive lifestyle...', 'Gonzo', NULL, 2, NULL, NULL),
+(193, 'The Tatami Galaxy', 'Tomihiko Morimi', 11, 'A college student relives his university life in different parallel universes...', 'Madhouse', NULL, 2, NULL, NULL),
+(194, 'Rurouni Kenshin', 'Nobuhiro Watsuki', 95, 'A former assassin turned wanderer protects the innocent...', 'Fuji TV', NULL, 2, NULL, NULL),
+(195, 'Hellsing', 'Kouta Hirano', 13, 'The Hellsing organization fights against supernatural threats...', 'Fuji TV', NULL, 2, NULL, NULL),
+(196, 'Black Lagoon', 'Rei Hiroe', 24, 'A businessman gets caught up in the world of pirates and mercenaries...', 'Chiba TV', NULL, 2, NULL, NULL),
+(197, 'Mushishi', 'Yuki Urushibara', 46, 'Ginko travels to help people affected by supernatural creatures called Mushi...', 'Artland', NULL, 2, NULL, NULL),
+(198, 'Dorohedoro', 'Q Hayashida', 12, 'Caiman seeks to regain his memories in a world inhabited by sorcerers...', 'Tokyo MX', NULL, 2, NULL, NULL),
+(199, 'Gangsta.', 'Kohske', 12, 'Two skilled handymen navigate the dangerous underworld of Ergastulum...', 'Manglobe', NULL, 2, NULL, NULL),
+(200, 'Love Live! School Idol Project', 'Sakurako Kimino', 13, 'A group of high school girls form an idol group...', 'Sunrise', NULL, 10, NULL, NULL),
+(201, 'Sound! Euphonium', 'Ayano Takeda', 39, 'A high school concert band strives to reach the national competition...', 'Kyoto Animation', NULL, 10, NULL, NULL),
+(202, 'Hibike! Euphonium', 'Ayano Takeda', 26, 'A girl joins her high school concert band and aims for success...', 'Pony Canyon', NULL, 10, NULL, NULL),
+(203, 'White Album 2', 'Fumiaki Maruto', 13, 'A love triangle unfolds among members of a music club...', 'Satelight', NULL, 10, NULL, NULL),
+(204, 'Beck', 'Harold Sakuishi', 26, 'A young boy joins a rock band and embarks on a journey in the music industry...', 'Madhouse', NULL, 10, NULL, NULL),
+(205, 'Kids on the Slope', 'Yuki Kodama', 12, 'Two friends bond over their shared love for jazz music...', 'Tezuka Productions', NULL, 10, NULL, NULL),
+(206, 'Nodame Cantabile', 'Tomoko Ninomiya', 45, 'A talented pianist crosses paths with an eccentric and talented violinist...', 'Fuji TV', NULL, 10, NULL, NULL),
+(207, 'The Idolmaster', 'Bunko Kanazawa', 25, 'A group of aspiring idols work hard to achieve their dreams...', 'A-1 Pictures', NULL, 10, NULL, NULL),
+(208, 'BanG Dream!', 'K? Nakamura', 52, 'A girl forms a band and aims to perform at a renowned music festival...', 'Xebec', NULL, 10, NULL, NULL),
+(209, 'Carole & Tuesday', 'Shinichiro Watanabe', 24, 'Two girls from different backgrounds form a musical duo...', 'Bones', NULL, 10, NULL, NULL),
+(210, 'Given', 'Natsuki Kizu', 11, 'A band of four members navigate their way through love and music...', 'Lerche', NULL, 10, NULL, NULL),
+(211, 'Idolish7', 'Bunbun', 24, 'A group of seven male idols strive to become top idols in the industry...', 'TROYCA', NULL, 10, NULL, NULL),
+(212, 'Piano no Mori', 'Makoto Isshiki', 24, 'A young boy discovers his passion for playing the piano...', 'Gaina', NULL, 10, NULL, NULL),
+(213, 'Shigatsu wa Kimi no Uso', 'Naoshi Arakawa', 22, 'A former pianist finds new inspiration after meeting a violinist...', 'Aniplex', NULL, 10, NULL, NULL),
+(214, 'La Corda d-Oro', 'Yuki Kure', 50, 'A girl attends a prestigious music academy and is drawn into a world of music competitions...', 'YTV', NULL, 10, NULL, NULL),
+(215, 'Tari Tari', 'P.A.Works', 13, 'A group of high school students form a choir club and pursue their passion for music...', 'TV Tokyo', NULL, 10, NULL, NULL),
+(216, 'Sakamichi no Apollon', 'Yuki Kodama', 12, 'Two boys bond over their shared love for jazz music...', 'Tezuka Productions', NULL, 10, NULL, NULL),
+(217, 'Love Live! Sunshine!!', 'Sakurako Kimino', 26, 'A new group of school idols aim to shine and save their school...', 'Sunrise', NULL, 10, NULL, NULL),
+(218, 'Detective Conan', 'Gosho Aoyama', 1000, 'A high school detective gets transformed into a child and solves mysteries undercover.', 'Shogakukan', 60, 6, NULL, NULL),
+(219, 'Monster', 'Naoki Urasawa', 74, 'A brilliant surgeon gets entangled in a series of murders committed by a sociopathic killer.', 'Shogakukan', 60, 6, NULL, NULL),
+(220, 'Gosick', 'Kazuki Sakuraba', 24, 'A transfer student and a girl with extraordinary deductive skills solve various mysteries.', 'Fujimi Shobo', 60, 6, NULL, NULL),
+(221, 'Danganronpa', 'Kazutaka Kodaka', 13, 'Students trapped in a twisted game of murder and deduction must uncover the truth to escape.', 'Kadokawa Shoten', 60, 6, NULL, NULL),
+(222, 'Rokka: Braves of the Six Flowers', 'Ishio Yamagata', 12, 'Six chosen heroes gather to defeat an ancient demon, but an imposter among them complicates their mission.', 'Shueisha', 60, 6, NULL, NULL),
+(223, 'UN-GO', 'Ango Sakaguchi', 11, 'A detective and his enigmatic assistant solve crimes and expose societal flaws in a post-war Japan.', 'Kadokawa Shoten', 60, 6, NULL, NULL),
+(224, 'Baccano!', 'Ryohgo Narita', 16, 'Multiple storylines intertwine in a complex narrative involving immortality, gang wars, and mysterious events.', 'ASCII Media Works', 60, 6, NULL, NULL),
+(225, 'Gankutsuou: The Count of Monte Cristo', 'Alexandre Dumas', 24, 'A futuristic retelling of the revenge story set in the 19th century.', 'Kadokawa Shoten', 60, 6, NULL, NULL),
+(226, 'Dusk Maiden of Amnesia', 'Maybe', 12, 'A high school paranormal investigation club encounters the ghost of a girl and uncovers mysteries surrounding her death.', 'Square Enix', 60, 6, NULL, NULL),
+(227, 'Detective Conan (Case Closed)', 'Gosho Aoyama', 1000, 'A high school detective gets transformed into a child and solves mysteries while hiding his true identity.', 'Shogakukan', 60, 6, NULL, NULL),
+(228, 'Higurashi no Naku Koro ni (When They Cry)', 'Ryukishi07', 74, 'A group of friends in a small village is trapped in a cycle of gruesome murders and mysteries.', 'Square Enix', 60, 6, NULL, NULL),
+(229, 'Danganronpa: The Animation', 'Spike Chunsoft', 13, 'Students are trapped in a school where they must kill each other to escape while a bear mascot oversees the twisted game.', 'Geneon Universal Entertainment', 60, 6, NULL, NULL),
+(230, 'Tantei Gakuen Q Detective School Q', 'Seimaru Amagi', 45, 'A group of prodigy students at a detective academy solves various challenging cases.', 'Kodansha', 60, 6, NULL, NULL),
+(231, 'Samurai Champloo', 'Shinichiro Watanabe', 26, 'A unique blend of samurai action and hip-hop culture.', 'Manglobe', 70, 7, NULL, NULL),
+(232, 'Dororo', 'Osamu Tezuka', 24, 'A young swordsman battles demons to reclaim his body parts.', 'MAPPA', 70, 7, NULL, NULL),
+(233, 'Golden Kamuy', 'Satoru Noda', 36, 'A soldier and a girl search for a hidden treasure in early 20th-century Hokkaido.', 'Geno Studio', 70, 7, NULL, NULL),
+(234, 'The Twelve Kingdoms', 'Fuyumi Ono', 45, 'A high school student is transported to a fantasy world.', 'Studio Pierrot', 70, 7, NULL, NULL),
+(235, 'Kingdom', 'Yasuhisa Hara', 99, 'A slave boy becomes a general during the Warring States period in China.', 'Studio Pierrot', 70, 7, NULL, NULL),
+(236, 'Basilisk: The Ouka Ninja Scrolls', 'Masaki Segawa', 24, 'Two ninja clans wage a deadly war.', 'Seven Arcs Pictures', 70, 7, NULL, NULL),
+(237, 'Sengoku Basara', 'Hiroyuki Kobayashi', 38, 'Feudal warlords battle for supremacy in Japan.', 'Production I.G', 70, 7, NULL, NULL),
+(238, 'Drifters', 'Kouta Hirano', 24, 'Historical figures are transported to another world to fight in battles.', 'Hoods Entertainment', 70, 7, NULL, NULL),
+(239, 'Rose of Versailles', 'Riyoko Ikeda', 40, 'A young noblewoman becomes a hero during the French Revolution.', 'TMS Entertainment', 70, 7, NULL, NULL),
+(240, 'The Heroic Legend of Arslan', 'Yoshiki Tanaka', 33, 'A young prince seeks to reclaim his kingdom from invaders.', 'LIDENFILMS', 70, 7, NULL, NULL),
+(241, 'Le Chevalier D\'Eon', 'Tow Ubukata', 24, 'A French noble investigates supernatural mysteries.', 'Production I.G', 70, 7, NULL, NULL),
+(242, 'Nobunaga Concerto', 'Ayumi Ishii', 26, 'A modern-day high school student is transported back in time to the Warring States period.', 'Studio DEEN', 70, 7, NULL, NULL),
+(243, 'Maria the Virgin Witch', 'Masayuki Ishikawa', 12, 'A witch uses her powers to prevent war.', 'Production I.G', 70, 7, NULL, NULL),
+(244, 'Shouwa Genroku Rakugo Shinjuu', 'Haruko Kumota', 25, 'A story about the art of Rakugo, a traditional form of Japanese storytelling.', 'Studio DEEN', 70, 7, NULL, NULL),
+(245, 'Moriarty the Patriot', 'Ryosuke Takeuchi', 24, 'A reimagining of Sherlock Holmes where Moriarty takes the spotlight.', 'Production I.G', 70, 7, NULL, NULL),
+(246, 'Katanagatari', 'Nisio Isin', 12, 'A unique story set in an alternate feudal Japan, revolving around sword collecting and a fascinating duo of protagonists.', 'Aniplex', 70, 7, NULL, NULL),
+(247, 'Paprika', 'Yasutaka Tsutsui', 1, 'A thrilling and mind-bending story about a device that allows therapists to enter their patients dreams.', 'Madhouse', 80, 8, NULL, NULL),
+(248, 'Re:Zero ? Starting Life in Another World', 'Tappei Nagatsuki', 25, 'Subaru Natsuki is transported to a fantasy world where he has the ability to reset time whenever he dies, and he must navigate the challenges and mysteries of this new world.', 'White Fox', 80, 8, NULL, NULL),
+(249, 'Durarara!!', 'Ryohgo Narita', 60, 'The story follows a large cast of characters in the bustling city of Ikebukuro, where secrets, urban legends, and supernatural occurrences intertwine.', 'Brains Base', 80, 8, NULL, NULL),
+(250, 'The Garden of Sinners', 'Kinoko Nasu', 7, 'A series of supernatural mysteries centered around Shiki Ryougi, a girl with the ability to see and destroy ghosts.', 'ufotable', 80, 8, NULL, NULL),
+(251, 'Shiki', 'Fuyumi Ono', 22, 'A mysterious epidemic leads to a battle between humans and vampires in a small village.', 'Daume', 90, 9, NULL, NULL),
+(252, 'Jigoku Shoujo (Hell Girl)', 'Hiroshi Watanabe', 26, 'A website allows people to send their enemies to Hell, but at a price.', 'Studio Deen', 90, 9, NULL, NULL),
+(253, 'Ajin', 'Gamon Sakurai', 26, 'A teenager discovers he is an immortal \"Ajin\" and becomes the target of government experiments.', 'Polygon Pictures', 90, 9, NULL, NULL),
+(254, 'Shinsekai yori (From the New World)', 'Yusuke Kishi', 25, 'In a post-apocalyptic world, a group of teenagers uncovers the dark secrets of their society.', 'A-1 Pictures', 90, 9, NULL, NULL),
+(255, 'Haibane Renmei', 'Yoshitoshi ABe', 13, 'Angelic beings called Haibane try to find their place in a mysterious town.', 'Radix Ace Entertainment', 90, 9, NULL, NULL),
+(256, 'Texhnolyze', 'Yoshitoshi ABe', 22, 'In a dystopian underground city, a man with new cybernetic limbs becomes embroiled in power struggles.', 'Madhouse', 90, 9, NULL, NULL),
+(257, 'Hellsing Ultimate', 'Kouta Hirano', 10, 'A secret organization battles supernatural threats, including vampires and ghouls.', 'Satelight', 90, 9, NULL, NULL),
+(258, 'Speed Grapher', 'Yasuhiro Nightow', 24, 'A former war photographer discovers a secret underground world of power and desire.', 'Gonzo', 90, 9, NULL, NULL),
+(259, 'Kaiji: Ultimate Survivor', 'Nobuyuki Fukumoto', 26, 'A young man enters dangerous gambling games in order to clear his massive debts.', 'Madhouse', 90, 9, NULL, NULL),
+(260, 'Kakegurui', 'Homura Kawamoto', 24, 'A prestigious school becomes a battleground where students gamble everything.', 'MAPPA', 90, 9, NULL, NULL),
+(261, 'Deadman Wonderland', 'Jinsei Kataoka', 12, 'A teenager with a special power is falsely accused and sent to a deadly prison.', 'Manglobe', 90, 9, NULL, NULL),
+(262, 'Rin: Daughters of Mnemosyne', 'Hiroshi Ohnogi', 6, 'A woman with immortality becomes entangled in a series of dark mysteries.', 'Xebec', 90, 9, NULL, NULL),
+(263, 'Magical Girl Site', 'Kentaro Sato', 12, 'A bullied girl discovers a website that grants her magical powers, but at a terrifying cost.', 'production dóA', 90, 9, NULL, NULL),
+(264, 'My Teen Romantic Comedy SNAFU', 'Wataru Watari', 26, 'A high school student with a cynical view on life gets involved in a club that helps others with their problems.', 'Brains Base', 100, 10, NULL, NULL),
+(265, 'Nisekoi: False Love', 'Naoshi Komi', 20, 'A boy caught in a fake relationship with a girl from a rival gang must navigate through various romantic complications.', 'SHAFT', 100, 10, NULL, NULL),
+(266, 'The Pet Girl of Sakurasou', 'Hajime Kamoshida', 24, 'A group of talented but quirky students live together in a dormitory and face the challenges of pursuing their dreams.', 'J.C.Staff', 100, 10, NULL, NULL),
+(267, 'Monthly Girls Nozaki-kun', 'Izumi Tsubaki', 12, 'A high school girl discovers that her crush is actually a popular shoujo manga artist, leading to hilarious misunderstandings.', 'Doga Kobo', 100, 10, NULL, NULL),
+(268, 'Ore Monogatari!! (My Love Story!!)', 'Kazune Kawahara', 24, 'A gentle giant and a girl fall in love, overcoming various obstacles and insecurities.', 'Madhouse', 100, 10, NULL, NULL);
+INSERT INTO `anime` (`aid`, `title`, `author`, `episodes`, `Summary`, `publisher`, `cr_id`, `uid`, `img`, `video_url`) VALUES
+(269, 'Tonari no Kaibutsu-kun (My Little Monster)', 'Robico', 13, 'A studious girl forms an unlikely friendship with a notorious troublemaker, leading to a unique romantic dynamic.', 'Brains Base', 100, 10, NULL, NULL),
+(270, 'Sakurasou no Pet na Kanojo (The Pet Girl of Sakurasou)', 'Hajime Kamoshida', 24, 'A group of talented misfits living in a dormitory learn about friendship, love, and pursuing their dreams.', 'J.C.Staff', 100, 10, NULL, NULL),
+(271, 'Gekkan Shoujo Nozaki-kun (Monthly Girls Nozaki-kun)', 'Izumi Tsubaki', 12, 'A high school girl finds herself involved in the world of shoujo manga after she becomes the assistant to a popular artist.', 'Doga Kobo', 100, 10, NULL, NULL),
+(272, 'School Rumble', 'Jin Kobayashi', 52, 'A comedic love triangle unfolds between a clumsy girl, a delinquent boy, and their classmates in a chaotic high school.', 'Studio Comet', 100, 10, NULL, NULL),
+(273, 'Kaichou wa Maid-sama! (Maid Sama!)', 'Hiro Fujiwara', 26, 'The student council president, who secretly works at a maid cafe, finds herself pursued by a popular classmate.', 'J.C.Staff', 100, 10, NULL, NULL),
+(274, 'Yamada-kun and the Seven Witches', 'Miki Yoshikawa', 12, 'A boy with the ability to switch bodies by kissing others gets involved with a group of students who possess supernatural powers.', 'Liden Films', 100, 10, NULL, NULL),
+(275, 'Wotakoi: Love is Hard for Otaku', 'Fujita', 11, 'Two office workers navigate the challenges of dating while embracing their otaku lifestyles.', 'A-1 Pictures', 100, 10, NULL, NULL),
+(276, '91 Days', 'Hiro Kaburagi', 12, 'A young man seeks revenge in the Prohibition-era mafia.', 'Shuka', 70, 7, NULL, NULL),
+(277, 'Rainbow: Nisha Rokubou no Shichinin', 'George Abe', 26, 'Six teenagers form a bond in a reform school after World War II.', 'Madhouse', 20, 2, NULL, NULL),
+(278, 'Banana Fish', 'Akimi Yoshida', 24, 'A young gang leader gets involved in a dangerous conspiracy in New York City.', 'MAPPA', 20, 2, NULL, NULL),
+(279, 'Great Pretender', 'Hiro Kaburagi', 23, 'A group of con artists targets high-profile criminals in elaborate scams.', 'Wit Studio', 20, 2, NULL, NULL),
+(280, 'Jormungand', 'Keitaro Motonaga', 24, 'An arms dealer and her team navigate a dangerous world of weapons trafficking.', 'White Fox', 20, 2, NULL, NULL),
+(281, 'Hakata Tonkotsu Ramens', 'Chiaki Kisaki', 12, 'Assassins and hitmen operate in the underground world of Fukuoka.', 'Satelight', 20, 2, NULL, NULL),
+(282, 'ID: Invaded', 'Ei Aoki', 13, 'A detective enters the minds of criminals to solve complex cases.', 'NAZ', 20, 2, NULL, NULL),
+(283, 'Lupin III: The Woman Called Fujiko Mine', 'Monkey Punch', 13, 'Master thief Lupin III and the mysterious Fujiko Mine embark on adventures.', 'TMS Entertainment', 20, 2, NULL, NULL),
+(284, 'ACCA: 13-Territory Inspection Dept.', 'Natsume Ono', 12, 'A government agency investigates corruption in a kingdom divided into 13 districts.', 'Madhouse', 20, 2, NULL, NULL),
+(285, 'Noir', 'Ryoe Tsukimura', 26, 'Two female assassins uncover a hidden conspiracy as they search for their pasts.', 'Bee Train', 20, 2, NULL, NULL),
+(286, 'Dragon Ball Z', 'Akira Toriyama', 291, 'Goku and his friends defend Earth against powerful villains using their superhuman abilities.', 'Toei Animation', 70, 7, NULL, NULL),
+(287, 'JoJo\'s Bizarre Adventure', 'Hirohiko Araki', 152, 'The Joestar family battles supernatural threats using their unique powers and Stands.', 'David Production', 70, 7, NULL, NULL),
+(288, 'The Seven Deadly Sins', 'Nakaba Suzuki', 76, 'A group of powerful knights known as the Seven Deadly Sins protect the kingdom of Britannia.', 'A-1 Pictures', 70, 7, NULL, NULL),
+(289, 'Fist of the North Star', 'Buronson', 109, 'In a post-apocalyptic world, Kenshiro uses his martial arts skills to protect the weak and seek revenge against those who wronged him.', 'Toei Animation', 70, 7, NULL, NULL),
+(290, 'Yu Yu Hakusho', 'Yoshihiro Togashi', 112, 'After dying saving a child, delinquent Yusuke Urameshi is given a second chance at life as a Spirit Detective, battling supernatural threats.', 'Studio Pierrot', 70, 7, NULL, NULL),
+(291, 'Kengan Ashura', 'Yabako Sandrovich', 24, 'Businesses settle disputes through gladiator-style fights using hired fighters called \"Kengan Ashura.\"', 'Larx Entertainment', 70, 7, NULL, NULL),
+(292, 'Baki', 'Keisuke Itagaki', 76, 'Baki Hanma seeks to become the strongest fighter in the world, facing off against various opponents in brutal martial arts battles.', 'Group TAC', 70, 7, NULL, NULL),
+(293, 'Kenichi: The Mightiest Disciple', 'Shun Matsuena', 50, 'Kenichi Shirahama, a weak high school student, trains under several masters to become a formidable martial artist.', 'TMS Entertainment', 70, 7, NULL, NULL),
+(294, 'Afro Samurai', 'Takashi Okazaki', 5, 'Afro, a samurai seeking vengeance for his fathers murder, embarks on a bloody quest to find the Number One headband.', 'Gonzo', 70, 7, NULL, NULL),
+(295, 'Street Fighter II: The Animated Movie', 'Reiko Yoshida', 1, 'The Street Fighter warriors join forces to take down the criminal organization known as Shadowlaw in this action-packed anime film.', 'Group TAC', 10, 1, NULL, NULL),
+(296, 'Mawaru Penguindrum', 'Kunihiko Ikuhara', 24, 'Three siblings become entangled in a mysterious quest involving a talking penguin hat.', 'Brains Base', 70, 7, NULL, NULL),
+(297, 'FLCL (Fooly Cooly)', 'Yoji Enokido', 6, 'A young boys life is turned upside down when an alien girl crashes into his town.', 'Gainax', 70, 7, NULL, NULL),
+(298, 'Mind Game', 'Robin Nishi', 1, 'A mans near-death experience leads to a surreal journey through life, death, and love.', 'Studio 4°C', 70, 7, NULL, NULL),
+(299, 'Kuuchuu Buranko (Welcome to Irabus Office)', 'Hideo Okuda', 11, 'A psychiatrist with multiple personalities treats patients in unconventional ways.', 'Toei Animation', 70, 7, NULL, NULL),
+(300, 'Angel\'s Egg', 'Mamoru Oshii', 1, 'A girl and a mysterious soldier explore a desolate world filled with enigmatic symbols.', 'Studio Deen', 70, 7, NULL, NULL),
+(301, 'Denpa-teki na Kanojo (The Radio Wave-Like Girlfriend)', 'Kentaro Katayama', 2, 'A high school student investigates a series of brutal crimes with the help of a strange girl.', 'Brick House', 70, 7, NULL, NULL),
+(302, 'Kaiba', 'Masaaki Yuasa', 12, 'A boy with a fragmented memory embarks on a journey to reclaim his lost memories.', 'Madhouse', 70, 7, NULL, NULL),
+(303, 'Aku no Hana (Flowers of Evil)', 'Shuzo Oshimi', 13, 'A timid boy becomes involved in a dangerous relationship with a troubled classmate.', 'Zexcs', 70, 7, NULL, NULL),
+(304, 'Kurozuka', 'Baku Yumemakura', 12, 'A warrior seeks to reunite with his lost love in a post-apocalyptic world filled with immortal enemies.', 'Madhouse', 70, 7, NULL, NULL),
+(305, 'Code Geass: Lelouch of the Rebellion', 'Goro Taniguchi', 50, 'A young prince rebels against an oppressive empire using a mysterious power.', 'Sunrise', 40, 4, NULL, NULL),
+(306, 'Ghost in the Shell: Stand Alone Complex', 'Masamune Shirow', 26, 'A specialized police unit investigates cybercrime in a futuristic world.', 'Production I.G', 40, 4, NULL, NULL),
+(307, 'Mobile Suit Gundam: Iron-Blooded Orphans', 'Yoshiyuki Tomino', 50, 'Orphans become soldiers and fight for their freedom in a world of political intrigue.', 'Sunrise', 40, 4, NULL, NULL),
+(308, 'Gate: Jieitai Kanochi nite, Kaku Tatakaeri (Gate: Thus the JSDF Fought There!)', 'Takumi Yanai', 24, 'The Japan Self-Defense Forces defend against a fantasy worlds invasion through a mysterious gate.', 'A-1 Pictures', 40, 4, NULL, NULL),
+(309, 'Alderamin on the Sky', 'Bokuto Uno', 13, 'A lazy tactician leads his troops to victory in a war between two nations.', 'Madhouse', 40, 4, NULL, NULL),
+(310, 'Arslan Senki (The Heroic Legend of Arslan)', 'Yoshiki Tanaka', 25, 'A young prince gathers allies to reclaim his kingdom from invaders.', 'Liden Films', 40, 4, NULL, NULL),
+(311, 'Valkyria Chronicles', 'Ryutaro Nonomura', 26, 'A young militia group fights against an aggressive empire during a war.', 'A-1 Pictures', 40, 4, NULL, NULL),
+(312, 'Saga of Tanya the Evil', 'Carlo Zen', 12, 'A ruthless salaryman is reborn as a young girl and becomes a powerful soldier in a world at war.', 'NUT', 40, 4, NULL, NULL),
+(313, 'The Legend of the Galactic Heroes', 'Yoshiki Tanaka', 110, 'Two military geniuses lead opposing forces in a grand space opera.', 'Artland', 40, 4, NULL, NULL),
+(314, 'Youjo Senki (The Saga of Tanya the Evil)', 'Carlo Zen', 12, 'A ruthless salaryman is reborn as a young girl and becomes a powerful soldier in a world at war.', 'NUT', 40, 4, NULL, NULL),
+(315, 'Girls und Panzer', 'Reiko Yoshida', 12, 'High school girls participate in tank warfare as a traditional sport.', 'Actas', 40, 4, NULL, NULL),
+(316, 'Now and Then, Here and There', 'Akitar? Daichi', 13, 'A boy is transported to a dystopian world torn apart by war and must fight to survive.', 'AIC', 40, 4, NULL, NULL),
+(317, 'Schwarzesmarken', 'Hiroki Uchida', 12, 'Pilots of the East German army fight against alien invaders in an alternate Cold War era.', 'IXA', 40, 4, NULL, NULL),
+(318, 'Pumpkin Scissors', 'Ryotaro Iwanaga', 24, 'A military unit tackles corruption and helps the war-torn population after a devastating conflict.', 'Gonzo', 40, 4, NULL, NULL),
+(319, 'The Sky Crawlers', 'Hiroshi Mori', 1, 'Pilots engage in aerial dogfights as part of a never-ending war in a world of endless peace.', 'Production I.G', 40, 4, NULL, NULL),
+(320, 'Area 88', 'Kaoru Shintani', 12, 'A pilot fights in a mercenary squadron in a war-torn Middle Eastern country.', 'Studio Pierrot', 40, 4, NULL, NULL),
+(321, 'Sword of the Stranger', 'Masahiro Ando', 1, 'A wandering samurai and a young boy get caught up in a conflict with a group of mercenaries.', 'Bones', 20, 2, NULL, NULL),
+(322, 'Samurai 7', 'Akira Kurosawa', 26, 'A group of samurai defend a village from a band of mechanized bandits.', 'Gonzo', 20, 2, NULL, NULL),
+(323, 'Shigurui: Death Frenzy', 'Norio Nanjo', 12, 'Two samurai engage in a brutal and deadly duel to the death.', 'Madhouse', 20, 2, NULL, NULL),
+(324, 'Blade of the Immortal', 'Hiroaki Samura', 24, 'A cursed samurai seeks redemption by aiding a young girl in her quest for revenge.', 'Bee Train', 20, 2, NULL, NULL),
+(325, 'Samurai Deeper Kyo', 'Akimine Kamijyo', 26, 'A samurai with multiple personalities embarks on a journey to regain his lost memories.', 'Studio Deen', 20, 2, NULL, NULL),
+(326, 'Hakuouki', 'Idea Factory', 12, 'A young woman becomes involved with the Shinsengumi during the tumultuous Bakumatsu period.', 'Studio Deen', 20, 2, NULL, NULL),
+(327, 'House of Five Leaves', 'Natsume Ono', 12, 'A timid samurai joins a mysterious gang and becomes entangled in their criminal activities.', 'Manglobe', 20, 2, NULL, NULL),
+(328, 'Onihei', 'Sh?tar? Ikenami', 13, 'A talented swordsman leads a group of skilled law enforcement officers, combating crime and corruption in Edo-era Japan.', 'Studio M2', 20, 2, NULL, NULL),
+(329, 'Sengoku Basara: Samurai Kings', 'Capcom', 12, 'Warlords and samurai clash in a dramatic and action-packed reimagining of Japan\'s Sengoku period.', 'Production I.G', 20, 2, NULL, NULL),
+(330, 'Peace Maker Kurogane', 'Nanae Chrono', 24, 'A young boy joins a group of assassins during the turbulent Bakumatsu period.', 'Gonzo', 20, 2, NULL, NULL),
+(331, 'Shura no Toki', 'Masatoshi Kawahara', 26, 'Three generations of samurai face off against their enemies in various historical eras.', 'Madhouse', 20, 2, NULL, NULL),
+(332, 'Space Battleship Yamato', 'Leiji Matsumoto', 26, 'Humanitys last hope lies in the legendary space battleship Yamato as they venture to save Earth from an alien menace.', 'Xebec', 50, 5, NULL, NULL),
+(333, 'Macross', 'Shoji Kawamori', 36, 'A young pilot becomes involved in an intergalactic war and discovers the power of music to unite different species.', 'Satelight', 50, 5, NULL, NULL),
+(334, 'Outlaw Star', 'Takehiko It?', 26, 'A group of space adventurers takes on dangerous missions while being pursued by various factions.', 'Sunrise', 50, 5, NULL, NULL),
+(335, 'Space Dandy', 'Shinichiro Watanabe', 26, 'The misadventures of an alien hunter as he explores space in search of rare and exotic creatures.', 'Bones', 50, 5, NULL, NULL),
+(336, 'The Irresponsible Captain Tylor', 'Hitoshi Yoshioka', 26, 'A laid-back man unexpectedly becomes the captain of a spaceship and stumbles into both military and alien encounters.', 'Tatsunoko Production', 50, 5, NULL, NULL),
+(337, 'Captain Harlock', 'Leiji Matsumoto', 42, 'The space pirate Captain Harlock fights against corrupt governments and defends freedom in the galaxy.', 'Toei Animation', 50, 5, NULL, NULL),
+(338, 'Space Brothers', 'Ch?ya Koyama', 99, 'Two brothers pursue their childhood dream of becoming astronauts and work towards joining the Japanese space program.', 'A-1 Pictures', 50, 5, NULL, NULL),
+(339, 'Toward the Terra', 'Keiko Takemiya', 24, 'In a future where humans have left Earth, a young boy with psychic powers challenges a dystopian society ruled by superhumans.', 'Tokyo Kids', 50, 5, NULL, NULL),
+(340, 'Infinite Ryvius', 'Yoshimitsu Ohashi', 26, 'Students stranded on a spaceship must form a society to survive as tensions rise and secrets are revealed.', 'Sunrise', 50, 5, NULL, NULL),
+(341, 'Stellvia of the Universe', 'Ryou Akizuki', 26, 'A group of students at a space academy must defend the Earth from cosmic threats while dealing with their personal struggles.', 'Xebec', 50, 5, NULL, NULL),
+(342, 'Martian Successor Nadesico', 'Keiji Gotoh', 26, 'A crew on board the spaceship Nadesico must protect Earth from an alien race while dealing with their own comedic misadventures.', 'Xebec', 50, 5, NULL, NULL),
+(343, 'Crest of the Stars', 'Hiroyuki Morioka', 13, 'In the midst of a space war, a human boy and an alien princess form a bond that transcends their differences.', 'Sunrise', 50, 5, NULL, NULL),
+(344, 'Star Blazers: Space Battleship Yamato 2199', 'Leiji Matsumoto', 26, 'Earths last hope lies in the crew of the space battleship Yamato as they journey to find a way to save humanity.', 'Xebec', 50, 5, NULL, NULL),
+(345, 'Astra Lost in Space', 'Kenta Shinohara', 12, 'A group of students gets stranded in space and must work together to survive and find their way back home.', 'Lerche', 50, 5, NULL, NULL),
+(346, 'Bodacious Space Pirates', 'Yuichi Sasamoto', 26, 'A high school girl becomes the captain of a pirate ship in a future where space piracy is legal.', 'Satelight', 50, 5, NULL, NULL),
+(347, 'Seraph of the End: Vampire Reign', 'Takaya Kagami', 24, 'In a post-apocalyptic world, humans battle against vampires for their survival.', 'Wit Studio', 90, 9, NULL, NULL),
+(348, 'Trinity Blood', 'Sunao Yoshida', 24, 'In a war-torn future, a priest with vampire powers fights against supernatural threats.', 'Gonzo', 90, 9, NULL, NULL),
+(349, 'Owari no Seraph (Seraph of the End)', 'Takaya Kagami', 24, 'A boy seeks revenge against vampires who killed his family.', 'Wit Studio', 90, 9, NULL, NULL),
+(350, 'Strike the Blood', 'Gakuto Mikumo', 24, 'A high school student becomes the fourth progenitor, a powerful vampire.', 'Silver Link', 90, 9, NULL, NULL),
+(351, 'Dance in the Vampire Bund', 'Nozomu Tamaki', 12, 'A vampire princess forms an alliance with a human boy to create a vampire homeland.', 'Shaft', 90, 9, NULL, NULL),
+(352, 'Rosario + Vampire', 'Akihisa Ikeda', 13, 'A human boy is enrolled in a school for monsters and falls in love with a vampire.', 'Gonzo', 90, 9, NULL, NULL),
+(353, 'Kekkai Sensen (Blood Blockade Battlefront)', 'Yasuhiro Nightow', 12, 'A young photographer joins a secret organization that protects New York City from supernatural threats.', 'Bones', 90, 9, NULL, NULL),
+(354, 'Owari no Seraph: Nagoya Kessen-hen (Seraph of the End: Battle in Nagoya)', 'Takaya Kagami', 12, 'The battle between humans and vampires intensifies in the city of Nagoya.', 'Wit Studio', 90, 9, NULL, NULL),
+(355, 'Diabolik Lovers', 'Rejet', 12, 'A girl finds herself in a mansion with sadistic vampire brothers.', 'Zexcs', 90, 9, NULL, NULL),
+(356, 'Black Blood Brothers', 'Kouhei Azano', 12, 'A vampire warrior battles against other vampires in a world divided between humans and vampires.', 'Group TAC', 90, 9, NULL, NULL),
+(357, 'Karin (Chibi Vampire)', 'Yuna Kagesaki', 24, 'A vampire girl with a unique condition seeks to live a normal life.', 'J.C.Staff', 90, 9, NULL, NULL),
+(358, 'Blood Lad', 'Yuuki Kodama', 10, 'A vampire boss seeks to restore a human girls life after she dies in the demon world.', 'Brains Base', 90, 9, NULL, NULL),
+(359, 'Vampire Princess Miyu', 'Narumi Kakinouchi', 26, 'A vampire princess hunts down supernatural creatures in the human world.', 'AIC', 90, 9, NULL, NULL),
+(360, 'Midnight Occult Civil Servants', 'Y?ko Tamotsu', 12, 'A young man discovers his ability to see and interact with supernatural creatures in Tokyo.', 'Liden Films', 90, 9, NULL, NULL),
+(361, 'Noblesse: Awakening', 'Son Jeho, Lee Kwangsu', 1, 'A powerful vampire awakens after centuries and must navigate the modern world.', 'Production I.G', 90, 9, NULL, NULL),
+(362, 'Devil\'s Line', 'Ryo Hanada', 12, 'A college student falls in love with a half-human, half-vampire as they navigate a world of vampire crimes.', 'Platinum Vision', 90, 9, NULL, NULL),
+(363, 'Saiki Kusuo no Psi-nan (The Disastrous Life of Saiki K.)', 'Shuichi Aso', 120, 'A high school student with psychic powers tries to live a normal life.', 'J.C.Staff', 80, 8, NULL, NULL),
+(364, 'Nichijou (My Ordinary Life)', 'Keiichi Arawi', 26, 'The absurd and hilarious daily lives of a group of high school students.', 'Kyoto Animation', 80, 8, NULL, NULL),
+(365, 'Konosuba: Gods Blessing on This Wonderful World!', 'Natsume Akatsuki', 20, 'A shut-in gamer is transported to a fantasy world with a dysfunctional party.', 'Studio Deen', 80, 8, NULL, NULL),
+(366, 'Osomatsu-san (Mr. Osomatsu)', 'Fujio Akatsuka', 25, 'The misadventures of the sextuplet Matsuno brothers and their wacky antics.', 'Studio Pierrot', 80, 8, NULL, NULL),
+(367, 'Carnival Phantasm', 'Kinoko Nasu', 12, 'A comedic crossover featuring characters from the Type-Moon universe.', 'Lerche', 80, 8, NULL, NULL),
+(368, 'Excel Saga', 'Koshi Rikdo', 26, 'A hyperactive girl named Excel and her missions to conquer the city.', 'J.C.Staff', 80, 8, NULL, NULL),
+(369, 'Pop Team Epic', 'Bkub Okawa', 12, 'Two girls, Popuko and Pipimi, embark on surreal and absurd adventures.', 'Kamikaze Douga', 80, 8, NULL, NULL),
+(370, 'Bobobo-bo Bo-bobo', 'Yoshio Sawai', 76, 'A surreal comedy about a hair-based rebel fighting against a tyrant.', 'Toei Animation', 80, 8, NULL, NULL),
+(371, 'Hayate no Gotoku! (Hayate the Combat Butler)', 'Kenjiro Hata', 52, 'A butler-in-debt becomes a butler-for-hire to a wealthy heiress.', 'SynergySP', 80, 8, NULL, NULL),
+(372, 'Lucky?Star', 'Kagami Yoshimizu', 24, 'The daily lives and otaku antics of four high school girls.', 'Kyoto Animation', 80, 8, NULL, NULL),
+(373, 'Seitokai no Ichizon (Student Councils Discretion)', 'Aoi Sekina', 12, 'A student council full of eccentric members engages in comedic discussions.', 'Studio Deen', 80, 8, NULL, NULL),
+(374, 'The Melancholy of Haruhi Suzumiya', 'Nagaru Tanigawa', 28, 'A high school girl unknowingly possesses god-like powers.', 'Kyoto Animation', 80, 8, NULL, NULL),
+(375, 'Sket Dance', 'Kenta Shinohara', 77, 'A high school club helps students with various problems and requests.', 'Tatsunoko Production', 80, 8, NULL, NULL),
+(376, 'Joshiraku', 'Kouji Kumeta', 13, 'A comedy about a group of rakugo performers and their humorous conversations.', 'J.C.Staff', 80, 8, NULL, NULL),
+(377, 'Is This a Zombie?', 'Shinichi Kimura', 12, 'A high school boy becomes a zombie and must fight magical creatures.', 'Studio Deen', 80, 8, NULL, NULL),
+(378, 'Seto no Hanayome (My Bride is a Mermaid)', 'Tahiko Kimura', 26, 'A high school boy is forced to marry a mermaid from a yakuza family.', 'Gonzo', 80, 8, NULL, NULL),
+(379, 'Shirobako', 'Mizushima Tsutomu', 24, 'A group of friends work in the anime industry to bring their dreams to life.', 'P.A. Works', 80, 8, NULL, NULL),
+(380, 'Himouto! Umaru-chan', 'Sankaku Head', 12, 'A high school girl has a lazy and spoiled personality at home.', 'Doga Kobo', 80, 8, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_genre`
+--
+
+CREATE TABLE `anime_genre` (
+  `genre_ID` int(10) NOT NULL,
+  `anime_ID` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `anime_genre`
+--
+
+INSERT INTO `anime_genre` (`genre_ID`, `anime_ID`) VALUES
+(101, 1),
+(101, 2),
+(101, 4),
+(101, 6),
+(102, 5),
+(102, 4),
+(102, 7),
+(104, 3),
+(104, 4),
+(108, 1),
+(103, 2),
+(110, 7),
+(105, 1),
+(112, 7),
+(114, 4),
+(101, 8),
+(101, 8),
+(102, 9),
+(105, 9),
+(108, 11),
+(103, 11),
+(107, 10),
+(102, 12),
+(101, 12),
+(103, 13),
+(101, 14),
+(101, 15),
+(101, 16),
+(101, 17),
+(101, 18),
+(101, 19),
+(101, 26),
+(101, 25),
+(101, 24),
+(101, 23),
+(101, 22),
+(101, 21),
+(101, 20),
+(103, 45),
+(103, 44),
+(103, 43),
+(103, 42),
+(103, 41),
+(103, 40),
+(103, 39),
+(103, 38),
+(103, 37),
+(103, 36),
+(103, 35),
+(103, 34),
+(103, 33),
+(103, 32),
+(103, 31),
+(103, 30),
+(103, 45),
+(103, 44),
+(103, 43),
+(103, 42),
+(103, 41),
+(103, 40),
+(103, 39),
+(103, 38),
+(103, 37),
+(103, 36),
+(103, 35),
+(103, 34),
+(103, 33),
+(103, 32),
+(103, 31),
+(103, 30),
+(102, 8),
+(102, 18),
+(102, 26),
+(102, 19),
+(102, 28),
+(102, 16),
+(102, 15),
+(102, 20),
+(102, 25),
+(102, 14),
+(102, 24),
+(102, 44),
+(102, 42),
+(102, 8),
+(102, 18),
+(102, 26),
+(102, 19),
+(102, 28),
+(102, 16),
+(102, 15),
+(102, 20),
+(102, 25),
+(102, 14),
+(102, 24),
+(102, 44),
+(102, 42),
+(104, 60),
+(104, 58),
+(104, 59),
+(104, 57),
+(104, 56),
+(104, 55),
+(104, 54),
+(104, 53),
+(104, 52),
+(104, 51),
+(104, 50),
+(104, 49),
+(104, 48),
+(104, 47),
+(104, 46),
+(104, 25),
+(104, 28),
+(104, 3),
+(106, 93),
+(106, 92),
+(106, 91),
+(106, 90),
+(106, 89),
+(106, 88),
+(106, 87),
+(106, 87),
+(106, 86),
+(106, 85),
+(106, 84),
+(106, 83),
+(106, 82),
+(102, 81),
+(106, 80),
+(106, 79),
+(106, 78),
+(106, 77),
+(106, 75),
+(106, 76),
+(106, 93),
+(106, 92),
+(106, 91),
+(106, 90),
+(106, 89),
+(106, 88),
+(106, 87),
+(106, 87),
+(106, 86),
+(106, 85),
+(106, 84),
+(106, 83),
+(106, 82),
+(102, 81),
+(106, 80),
+(106, 79),
+(106, 78),
+(106, 77),
+(106, 75),
+(106, 76),
+(107, 110),
+(107, 109),
+(107, 94),
+(107, 95),
+(107, 96),
+(107, 97),
+(107, 98),
+(107, 99),
+(107, 100),
+(107, 101),
+(107, 102),
+(107, 103),
+(107, 104),
+(107, 105),
+(107, 106),
+(107, 107),
+(107, 108),
+(107, 109),
+(107, 110),
+(107, 111),
+(107, 112),
+(107, 113),
+(108, 114),
+(107, 101),
+(107, 102),
+(107, 103),
+(107, 104),
+(107, 105),
+(107, 106),
+(107, 107),
+(107, 108),
+(107, 109),
+(107, 110),
+(107, 111),
+(107, 112),
+(107, 113),
+(108, 114),
+(107, 114),
+(108, 115),
+(108, 116),
+(108, 115),
+(108, 116),
+(108, 115),
+(108, 116),
+(108, 117),
+(108, 118),
+(108, 119),
+(108, 120),
+(108, 121),
+(108, 122),
+(108, 123),
+(108, 124),
+(108, 125),
+(108, 126),
+(108, 8),
+(108, 27),
+(108, 35),
+(108, 22),
+(108, 4),
+(108, 21),
+(108, 8),
+(108, 27),
+(108, 35),
+(108, 22),
+(108, 4),
+(108, 21),
+(109, 127),
+(109, 128),
+(109, 129),
+(109, 130),
+(109, 131),
+(109, 132),
+(109, 133),
+(109, 134),
+(109, 135),
+(109, 136),
+(109, 137),
+(109, 138),
+(109, 35),
+(109, 47),
+(109, 44),
+(109, 3),
+(109, 49),
+(109, 5),
+(109, 4),
+(109, 35),
+(109, 47),
+(109, 44),
+(109, 3),
+(109, 49),
+(109, 5),
+(109, 4),
+(109, 1),
+(109, 1),
+(110, 139),
+(110, 140),
+(110, 141),
+(110, 142),
+(110, 143),
+(110, 144),
+(110, 145),
+(110, 146),
+(110, 147),
+(110, 148),
+(110, 149),
+(110, 150),
+(110, 151),
+(110, 152),
+(110, 153),
+(110, 154),
+(110, 155),
+(110, 156),
+(110, 157),
+(110, 158),
+(111, 159),
+(111, 160),
+(111, 161),
+(111, 162),
+(111, 159),
+(111, 160),
+(111, 161),
+(111, 162),
+(111, 163),
+(111, 164),
+(111, 165),
+(111, 166),
+(111, 167),
+(111, 168),
+(111, 169),
+(111, 170),
+(111, 171),
+(111, 172),
+(111, 173),
+(111, 174),
+(111, 175),
+(111, 176),
+(111, 177),
+(111, 178),
+(112, 179),
+(112, 180),
+(112, 181),
+(112, 182),
+(112, 183),
+(112, 184),
+(112, 185),
+(112, 186),
+(112, 187),
+(112, 188),
+(112, 189),
+(112, 159),
+(112, 160),
+(112, 161),
+(112, 162),
+(112, 163),
+(112, 164),
+(111, 171),
+(111, 172),
+(111, 173),
+(113, 1),
+(113, 14),
+(113, 41),
+(113, 2),
+(113, 3),
+(113, 4),
+(113, 5),
+(113, 6),
+(113, 7),
+(113, 8),
+(113, 9),
+(113, 50),
+(113, 15),
+(113, 12),
+(113, 13),
+(113, 14),
+(113, 55),
+(113, 16),
+(113, 17),
+(113, 18),
+(114, 1),
+(114, 19),
+(114, 2),
+(114, 190),
+(114, 191),
+(114, 192),
+(114, 193),
+(114, 194),
+(114, 195),
+(114, 196),
+(114, 197),
+(114, 198),
+(114, 3),
+(114, 4),
+(114, 5),
+(114, 199),
+(114, 6),
+(114, 7),
+(114, 8),
+(114, 9),
+(114, 10),
+(114, 11),
+(114, 13),
+(115, 200),
+(115, 201),
+(115, 202),
+(115, 203),
+(115, 204),
+(115, 205),
+(115, 206),
+(115, 207),
+(115, 208),
+(115, 209),
+(115, 210),
+(115, 211),
+(115, 212),
+(115, 213),
+(115, 214),
+(115, 215),
+(115, 216),
+(115, 217),
+(115, 30),
+(115, 163),
+(115, 88),
+(115, 139),
+(115, 166),
+(114, 53),
+(114, 149),
+(112, 32),
+(112, 134),
+(112, 11),
+(113, 28),
+(113, 29),
+(113, 39),
+(115, 30),
+(115, 163),
+(115, 88),
+(115, 139),
+(115, 166),
+(114, 53),
+(114, 149),
+(112, 32),
+(112, 134),
+(112, 11),
+(113, 28),
+(113, 29),
+(113, 39),
+(105, 61),
+(105, 62),
+(105, 63),
+(105, 64),
+(105, 65),
+(105, 66),
+(105, 67),
+(105, 68),
+(105, 69),
+(105, 70),
+(105, 71),
+(105, 72),
+(105, 73),
+(105, 74),
+(105, 8),
+(105, 9),
+(105, 32),
+(105, 44),
+(105, 5),
+(105, 1),
+(105, 8),
+(105, 9),
+(105, 32),
+(105, 44),
+(105, 5),
+(105, 1),
+(116, 218),
+(116, 219),
+(116, 220),
+(116, 221),
+(116, 222),
+(116, 223),
+(116, 224),
+(116, 225),
+(116, 226),
+(116, 227),
+(116, 228),
+(116, 229),
+(116, 230),
+(116, 5),
+(116, 65),
+(116, 47),
+(116, 49),
+(116, 64),
+(116, 52),
+(116, 44),
+(117, 231),
+(117, 232),
+(117, 233),
+(117, 234),
+(117, 235),
+(117, 236),
+(117, 237),
+(117, 238),
+(117, 239),
+(117, 240),
+(117, 241),
+(117, 242),
+(117, 243),
+(117, 244),
+(117, 245),
+(117, 246),
+(117, 43),
+(117, 26),
+(117, 8),
+(117, 119),
+(118, 247),
+(118, 248),
+(118, 249),
+(118, 250),
+(118, 35),
+(118, 47),
+(118, 42),
+(118, 3),
+(118, 127),
+(118, 49),
+(118, 74),
+(118, 129),
+(118, 52),
+(118, 46),
+(118, 192),
+(118, 5),
+(118, 44),
+(118, 132),
+(118, 193),
+(118, 62),
+(119, 251),
+(119, 252),
+(119, 253),
+(119, 254),
+(119, 255),
+(119, 256),
+(119, 257),
+(119, 258),
+(119, 259),
+(119, 260),
+(119, 261),
+(119, 262),
+(119, 263),
+(119, 196),
+(119, 193),
+(119, 123),
+(119, 53),
+(119, 67),
+(119, 52),
+(119, 70),
+(120, 264),
+(120, 265),
+(120, 266),
+(120, 267),
+(120, 268),
+(120, 269),
+(120, 270),
+(120, 271),
+(120, 272),
+(120, 273),
+(120, 274),
+(120, 275),
+(120, 85),
+(120, 86),
+(120, 162),
+(120, 31),
+(120, 161),
+(120, 89),
+(120, 178),
+(120, 174),
+(121, 276),
+(121, 277),
+(121, 278),
+(121, 279),
+(121, 280),
+(121, 281),
+(121, 282),
+(121, 283),
+(121, 284),
+(121, 285),
+(121, 35),
+(121, 47),
+(121, 224),
+(121, 219),
+(121, 46),
+(121, 249),
+(121, 196),
+(121, 199),
+(121, 61),
+(121, 131),
+(122, 286),
+(122, 287),
+(122, 288),
+(122, 15),
+(122, 20),
+(122, 8),
+(122, 16),
+(122, 22),
+(122, 12),
+(122, 19),
+(122, 4),
+(122, 18),
+(122, 1),
+(122, 29),
+(122, 25),
+(122, 116),
+(122, 14),
+(122, 35),
+(122, 17),
+(122, 21),
+(123, 289),
+(123, 290),
+(123, 291),
+(123, 292),
+(123, 293),
+(123, 294),
+(123, 16),
+(123, 286),
+(123, 14),
+(123, 22),
+(123, 12),
+(123, 8),
+(123, 15),
+(123, 4),
+(123, 231),
+(123, 20),
+(123, 17),
+(123, 101),
+(123, 194),
+(123, 295),
+(123, 295),
+(124, 296),
+(124, 297),
+(124, 298),
+(124, 299),
+(124, 300),
+(124, 301),
+(124, 302),
+(124, 303),
+(124, 304),
+(124, 49),
+(124, 129),
+(124, 247),
+(124, 74),
+(124, 42),
+(124, 67),
+(124, 52),
+(124, 193),
+(124, 255),
+(124, 66),
+(124, 256),
+(125, 305),
+(125, 306),
+(125, 307),
+(125, 308),
+(125, 309),
+(125, 310),
+(125, 311),
+(125, 312),
+(125, 313),
+(125, 314),
+(125, 315),
+(125, 316),
+(125, 317),
+(125, 318),
+(125, 319),
+(125, 320),
+(125, 4),
+(125, 8),
+(125, 196),
+(125, 280),
+(126, 321),
+(126, 322),
+(126, 323),
+(126, 324),
+(126, 325),
+(126, 326),
+(126, 327),
+(126, 328),
+(126, 329),
+(126, 330),
+(126, 331),
+(126, 231),
+(126, 43),
+(126, 294),
+(126, 75),
+(126, 236),
+(126, 238),
+(126, 246),
+(126, 242),
+(126, 232),
+(127, 332),
+(127, 333),
+(127, 334),
+(127, 335),
+(127, 336),
+(127, 337),
+(127, 338),
+(127, 339),
+(127, 340),
+(127, 341),
+(127, 342),
+(127, 343),
+(127, 344),
+(127, 345),
+(127, 346),
+(127, 48),
+(127, 307),
+(127, 313),
+(127, 55),
+(127, 50),
+(128, 347),
+(128, 348),
+(128, 349),
+(128, 350),
+(128, 351),
+(128, 352),
+(128, 353),
+(128, 354),
+(128, 355),
+(128, 356),
+(128, 357),
+(128, 358),
+(128, 359),
+(128, 360),
+(128, 361),
+(128, 362),
+(128, 126),
+(128, 195),
+(128, 73),
+(128, 25),
+(129, 363),
+(129, 364),
+(129, 365),
+(129, 366),
+(129, 367),
+(129, 368),
+(129, 369),
+(129, 370),
+(129, 371),
+(129, 372),
+(129, 373),
+(129, 374),
+(129, 375),
+(129, 376),
+(129, 377),
+(129, 378),
+(129, 379),
+(129, 380),
+(129, 75),
+(129, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anime_history`
+--
+
+CREATE TABLE `anime_history` (
+  `aid` int(10) NOT NULL,
+  `hid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `anime_history`
+--
+
+INSERT INTO `anime_history` (`aid`, `hid`) VALUES
+(1, 7),
+(8, 3),
+(13, 3),
+(4, 4),
+(3, 4),
+(6, 4),
+(6, 3),
+(2, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crunchylist`
+--
+
+CREATE TABLE `crunchylist` (
+  `crunchy_id` int(10) NOT NULL,
+  `uid` int(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `crunchylist`
+--
+
+INSERT INTO `crunchylist` (`crunchy_id`, `uid`) VALUES
+(10, 1),
+(20, 2),
+(30, 3),
+(40, 4),
+(50, 5),
+(60, 6),
+(70, 7),
+(80, 8),
+(90, 9),
+(100, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genre`
+--
+
+CREATE TABLE `genre` (
+  `genre_id` int(10) NOT NULL,
+  `Gname` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `genre`
+--
+
+INSERT INTO `genre` (`genre_id`, `Gname`) VALUES
+(101, 'Action'),
+(102, 'Adventure'),
+(103, 'Drama'),
+(104, 'Sci-fi'),
+(105, 'Horror'),
+(106, 'Comedy'),
+(107, 'Sports'),
+(108, 'Supernatural'),
+(109, 'Thriller'),
+(110, 'Slice of Life'),
+(111, 'Romance'),
+(112, 'Shojo'),
+(113, 'Seinen'),
+(114, 'Shonen'),
+(115, 'Music'),
+(116, 'Mystery'),
+(117, 'Historical'),
+(118, 'Psychological'),
+(119, 'Psychological Thriller'),
+(120, 'Romantic Comedy'),
+(121, 'Crime'),
+(122, 'Superpower'),
+(123, 'Martial Arts'),
+(124, 'Dementia'),
+(125, 'Military'),
+(126, 'Samurai'),
+(127, 'Space'),
+(128, 'Vampire'),
+(129, 'Parody'),
+(130, 'Demons');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `hid` int(11) NOT NULL,
+  `no_of_anime` int(11) DEFAULT NULL,
+  `Month` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`hid`, `no_of_anime`, `Month`) VALUES
+(3, 4, 'January'),
+(4, 3, 'January'),
+(5, 1, 'February'),
+(6, 9, 'February'),
+(7, 5, 'January');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registration`
+--
+
+CREATE TABLE `registration` (
+  `UID` int(100) NOT NULL,
+  `Password` varchar(30) DEFAULT 'NOT NULL',
+  `Phone_No` int(15) DEFAULT NULL,
+  `Frist_Name` varchar(20) DEFAULT 'NOT NULL',
+  `Last_Name` varchar(20) DEFAULT 'NOT NULL',
+  `Email` varchar(20) DEFAULT 'NOT NULL',
+  `Birth_Date` date DEFAULT NULL,
+  `UserName` varchar(20) DEFAULT 'NOT NULL'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`UID`, `Password`, `Phone_No`, `Frist_Name`, `Last_Name`, `Email`, `Birth_Date`, `UserName`) VALUES
+(1, 'acf45', 1234578, 'Steven', 'King', 'stevenking23@gmail.c', '2008-11-11', 'stevi'),
+(2, 'acf46', 1934578, 'Teven', 'Mike', 'tevenmike03@gmail.co', '2001-08-01', 'tevi'),
+(3, 'wf46', 1933678, 'Mahi', 'Mike', 'mahimike03@gmail.com', '1999-08-01', 'mahi'),
+(4, 'rff46', 1298078, 'Rahin', 'stre', 'rahinstre453@gmail.c', '1987-03-01', 'rahin'),
+(5, 'acf49', 1934123, 'Even', 'Esha', 'evenesha09@gmail.com', '2001-02-01', 'evenesha'),
+(6, 'fgtjuk', 1436680, 'Akhi', 'Makhi', 'akhimakhi@gmail.com', '2000-09-23', 'akhi23'),
+(7, 'gjhkhlp', 987655, 'Jinia', 'Rshi', 'jinia98@gmail.com', '1990-05-07', 'jinia98'),
+(8, 'gfvjhkjo', 3546790, 'Asha', 'Aishi', 'ashais09@gmai.com', '1998-04-02', 'aishi45'),
+(9, 'ffho09', 2446890, 'Era', 'Warner', 'era45@gmai.com', '1998-07-23', 'era47'),
+(10, 'sshtjkll', 23535779, 'makise', 'kurisu', 'sara67@gmai.com', '2000-06-23', 'mmkk887'),
+(11, 'wjhdgehj', 78362, 'sara', 'rahman', 'sssa@gmail.com', '2023-05-06', 'xxrr1729'),
+(12, 'sded', 343443, '32mina', 'sultana', 'asjhgasjh@gmail.com', '2023-05-17', 'sjasdjhsa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `rid` int(11) NOT NULL,
+  `votes` varchar(50) DEFAULT NULL,
+  `comments` varchar(900) DEFAULT NULL,
+  `anime_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`rid`, `votes`, `comments`, `anime_id`) VALUES
+(1, '4 star', 'This show has a very unique concept believe you\'ll fall in love with this show once you\'ll watch it . The characters send massages to past and future , they go to alternate possibilities of times it\'s just very unique ', 3),
+(2, '5 stars', 'An indeed legendary classic anime. Fullmetal Alchemist: Brotherhood has all the elements a typical anime should have from comedy to sheer thriller. I loved the one thing about this show is Fullmetal Alchemist: Brotherhood has shown profound character development of each of its characters including Maria Ross to chimeras like Zumpano.', 4),
+(3, '4 star', 'Once you start, you just can\'t stop watching because of the thrill and anticipation! The plot-twists were very captivating and the switch between present and past to explain certain parts was done appropriately.', 4),
+(4, '4 star', 'Even though it\'s just an anime, a fiction, even though an ideal world is impossible but still \" ???? \" has taught me many things.\r\n\r\nNo matter how smart you are, no matter how intelligent you may be, no matter how strong you are, no matter how talented you may be,If you don\'t have the good in your heart,you will never attain inner peace nor the eternal peace around your loved ones.', 5),
+(5, '2 star', 'I love, love, love this show, but it fails to get to the point in a normal amount of time.  I also am super irritated that Eren is a petulant child to always does the wrong thing.', 8),
+(6, '4 star', '\"Your Name\" is an enchanting anime film that captivates audiences with its compelling story, stunning visuals, and heartfelt emotions. Directed by Makoto Shinkai, this critically acclaimed movie takes viewers on an extraordinary journey of love, fate, and connection.\r\n', 11),
+(7, '5 star', 'I watched tons of tv series but trust me, It is the one which gives me goosebumps. The reason is, it carries the emotion of friendship, trust, and most importantly immense determination to surpass one\'s limit and reach another peak. I am simply grateful for such a beautiful script and a series of emotions.', 10),
+(8, '3', 'wholesome thing about the show is the saying that they have about fighting for humanity and putting their hearts on the line to protect and save humanity from extinction from these beasts but you\'ll soon find the biggest twist on how they came to be. overall it was good, but didn\'t amaze me like it used to do in earlier seasons', 8),
+(9, '4 star', 'This is one of the best shows that i have ever watched. There are so many heart pounding moments (spoiler alert) like when the guy covered in scars takes Nezuko\'s box into the shade and stabs her and cuts himself to prove that she\'s a bloodthirsty demon and the entire time you have to remember how to breathe because you just want her to win the fight!', 9),
+(10, '5 star', 'BEST MY FAVORITE !!! \nI don\'t really know how to put my feelings into words . First of all I don\'t know why people hate first ten episodes of this series they were very interesting . This series takes real - life time travel incidents and then build up a awesome story . ', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscription1`
+--
+
+CREATE TABLE `subscription1` (
+  `UID` int(100) NOT NULL,
+  `Subsc_id` int(100) NOT NULL,
+  `Type` varchar(50) NOT NULL,
+  `FanBase` varchar(50) NOT NULL,
+  `Discount` int(100) NOT NULL,
+  `Start_Date` date NOT NULL,
+  `END_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subscription1`
+--
+
+INSERT INTO `subscription1` (`UID`, `Subsc_id`, `Type`, `FanBase`, `Discount`, `Start_Date`, `END_Date`) VALUES
+(1, 1, 'Monthly', 'Normal_Fan', 20, '2023-05-09', '2023-06-12'),
+(2, 2, 'Yearly', 'Mega_Fan', 35, '2023-04-23', '2024-06-12'),
+(3, 3, 'Monthly', 'Normal_Fan', 15, '2023-06-09', '2023-07-21'),
+(4, 4, 'Yearly', 'Mega_Fan', 35, '2023-04-24', '2024-05-12'),
+(5, 5, 'Monthly', 'Normal_Fan', 20, '2023-02-09', '2023-03-02'),
+(6, 6, 'Yearly', 'Mega_Fan', 35, '2023-03-12', '2024-06-01'),
+(7, 7, 'Monthly', 'Normal_Fan', 15, '2023-02-09', '2023-06-21'),
+(8, 8, 'Yearly', 'Mega_Fan', 35, '2023-04-14', '2024-05-02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user1`
+--
+
+CREATE TABLE `user1` (
+  `Region` varchar(50) NOT NULL,
+  `UID` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user1`
+--
+
+INSERT INTO `user1` (`Region`, `UID`) VALUES
+('London', 1),
+('Dhaka', 2),
+('Texas', 3),
+('Andrew', 4),
+('Anegam', 5),
+('NewYork', 6),
+('Paris', 7),
+('Tokyo', 8),
+('Beijing', 9),
+('Cairo', 10);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`UID`);
+
+--
+-- Indexes for table `anime`
+--
+ALTER TABLE `anime`
+  ADD PRIMARY KEY (`aid`),
+  ADD KEY `cr_id` (`cr_id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `anime_genre`
+--
+ALTER TABLE `anime_genre`
+  ADD KEY `aid` (`genre_ID`),
+  ADD KEY `genre_id` (`anime_ID`);
+
+--
+-- Indexes for table `anime_history`
+--
+ALTER TABLE `anime_history`
+  ADD KEY `aid` (`aid`),
+  ADD KEY `hid` (`hid`);
+
+--
+-- Indexes for table `crunchylist`
+--
+ALTER TABLE `crunchylist`
+  ADD PRIMARY KEY (`crunchy_id`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `genre`
+--
+ALTER TABLE `genre`
+  ADD PRIMARY KEY (`genre_id`);
+
+--
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`hid`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`UID`),
+  ADD UNIQUE KEY `UserName` (`UserName`),
+  ADD UNIQUE KEY `Email` (`Email`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`rid`),
+  ADD KEY `anime_id` (`anime_id`);
+
+--
+-- Indexes for table `subscription1`
+--
+ALTER TABLE `subscription1`
+  ADD PRIMARY KEY (`Subsc_id`),
+  ADD KEY `UID` (`UID`);
+
+--
+-- Indexes for table `user1`
+--
+ALTER TABLE `user1`
+  ADD PRIMARY KEY (`UID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `admin`
+--
+ALTER TABLE `admin`
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `registration` (`UID`);
+
+--
+-- Constraints for table `anime`
+--
+ALTER TABLE `anime`
+  ADD CONSTRAINT `anime_ibfk_1` FOREIGN KEY (`cr_id`) REFERENCES `crunchylist` (`crunchy_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user1` (`UID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_genre`
+--
+ALTER TABLE `anime_genre`
+  ADD CONSTRAINT `anime_genre_ibfk_1` FOREIGN KEY (`anime_ID`) REFERENCES `anime` (`aid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_genre_ibfk_2` FOREIGN KEY (`genre_ID`) REFERENCES `genre` (`genre_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `anime_history`
+--
+ALTER TABLE `anime_history`
+  ADD CONSTRAINT `anime_history_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `anime` (`aid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `anime_history_ibfk_2` FOREIGN KEY (`hid`) REFERENCES `history` (`hid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `crunchylist`
+--
+ALTER TABLE `crunchylist`
+  ADD CONSTRAINT `crunchylist_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user1` (`UID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `history`
+--
+ALTER TABLE `history`
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`hid`) REFERENCES `user1` (`UID`);
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `user1` (`UID`),
+  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`aid`);
+
+--
+-- Constraints for table `subscription1`
+--
+ALTER TABLE `subscription1`
+  ADD CONSTRAINT `subscription1_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `user1` (`UID`);
+
+--
+-- Constraints for table `user1`
+--
+ALTER TABLE `user1`
+  ADD CONSTRAINT `user1_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `registration` (`UID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
